@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{default :: layout(~{::title}, ~{::section})}">
+<head>
+<meta charset="utf-8">
+<title th:text="#{usuario.list}">Usuários</title>
+</head>
+<body>
+	<section>
+		<h2 th:text="#{usuario.list}">Listagem de Usuários</h2>
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr  class="table-primary">
+						<th th:text="#{nome}">Nome</th>
+						<th th:text="#{email}">Email</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="usa : ${usuario}">
+						<th th:text="${usa.nome}">Nome</th>
+						<td th:text="${usa.email}">Descrição</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+	</section>
+</body>
+</html>
