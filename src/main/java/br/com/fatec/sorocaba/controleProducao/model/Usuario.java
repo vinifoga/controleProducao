@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import org.hibernate.annotations.Type;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -24,6 +25,9 @@ public class Usuario implements UserDetails{
 	private String nome;
 	private String email;
 	private String senha;
+	
+	@Type(type="true_false")
+	private boolean ativo;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Perfil> perfis = new ArrayList<>();
@@ -89,6 +93,14 @@ public class Usuario implements UserDetails{
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return this.perfis;
+	}
+	
+	public boolean isAtivo() {
+		return ativo;
+	}
+	
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	@Override

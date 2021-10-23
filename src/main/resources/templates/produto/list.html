@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{default :: layout(~{::title}, ~{::section})}">
+<head>
+<meta charset="utf-8">
+<title th:text="#{produto.list}">Produtos</title>
+</head>
+<body>
+	<section>
+		<h2 th:text="#{produto.list}">Listagem de Produtos</h2>
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr  class="table-primary">
+						<th th:text="#{descricao}">Descrição</th>
+						<th th:text="#{corte}">Corte</th>
+						<th th:text="#{tempero}" >Tempero</th>
+						<th th:text="#{embalagem}" >Embalagem</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="prod : ${produtos}">
+						<th th:text="${prod.descProduto}">Descrição</th>
+						<td th:text="${prod.corte}">Corte</td>
+						<td th:text="${prod.tempero}">Tempero</td>
+						<td th:text="${prod.embalagem}">Embalagem</td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+	</section>
+</body>
+</html>

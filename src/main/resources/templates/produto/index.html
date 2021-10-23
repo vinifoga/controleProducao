@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{default :: layout(~{::title}, ~{::section})}">
+<head>
+<meta charset="utf-8">
+<title th:text="#{produto}">Produto</title>
+</head>
+<body>
+	<section>
+		<div class="col-md-8 order-md-1">
+			<h4 class="mb-3" th:text="#{produto}">Produto</h4>
+			<form action="/produto" th:action="@{/produto}" method="post">
+				<div class="row">
+					<div class="mb-3 col-md-12">
+						<label for="nome" th:text="#{descProduto}">Descrição</label> <input
+							type="text" class="form-control" id="descProduto" name="descProduto" required>
+					</div>					
+				</div>
+				
+				<div class="row">
+					<div class="mb-3 col-md-4">
+						<label for="corte" th:text="#{corte}">Corte</label>
+						<select class="form-control" id="corte" name="corte" required="required">
+						<option th:each="corte : ${T(br.com.fatec.sorocaba.controleProducao.model.Corte).values()}" th:value="${corte}" th:text="${corte}"></option>
+						</select>
+					</div>
+					<div class="mb-3 col-md-4">
+						<label for="tempero" th:text="#{tempero}">Tempero</label>
+						<select class="form-control" id="tempero" name="tempero" required="required">
+						<option th:each="tempero : ${T(br.com.fatec.sorocaba.controleProducao.model.Tempero).values()}" th:value="${tempero}" th:text="${tempero}"></option>
+						</select>
+					</div>
+					<div class="mb-3 col-md-4">
+						<label for="embalagem" th:text="#{embalagem}">Embalagem</label>
+						<select class="form-control" id="embalagem" name="embalagem" required="required">
+						<option th:each="embalagem : ${T(br.com.fatec.sorocaba.controleProducao.model.Embalagem).values()}" th:value="${embalagem}" th:text="${embalagem}"></option>
+						</select>
+					</div>
+				</div>				
+				<button id="salvar" class="btn btn-success btn-lg btn-block"
+					type="submit" th:value="${save}">Salvar</button>
+				<a href="/lista-produto" th:href="@{/lista-produto}"
+					class="btn btn-primary btn-lg btn-block" th:onclick="loading()">Listar<span
+					class="spinner-border float-right"
+					style="width: 2rem; height: 2rem; display: none;" role="status"
+					id="load"></span></a>
+			</form>
+		</div>
+	</section>
+</body>
+</html>

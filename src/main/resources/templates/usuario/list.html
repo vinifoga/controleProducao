@@ -14,12 +14,16 @@
 					<tr  class="table-primary">
 						<th th:text="#{nome}">Nome</th>
 						<th th:text="#{email}">Email</th>
+						<th th:text="#{status}" ></th>
+						
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="usa : ${usuario}">
+					<tr th:each="usa : ${usuarios}">
 						<th th:text="${usa.nome}">Nome</th>
 						<td th:text="${usa.email}">Descrição</td>
+						<td th:if="${usa.ativo == true}">Ativo</td>
+						<td th:unless="${usa.ativo == true}">Desligado</td>
 					</tr>
 				</tbody>
 			</table>

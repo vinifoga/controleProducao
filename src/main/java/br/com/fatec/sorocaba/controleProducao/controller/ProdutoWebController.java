@@ -12,29 +12,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.fatec.sorocaba.controleProducao.model.Usuario;
-import br.com.fatec.sorocaba.controleProducao.service.UsuarioService;
+import br.com.fatec.sorocaba.controleProducao.model.Produto;
+import br.com.fatec.sorocaba.controleProducao.service.ProdutoService;
 
 @Controller
-public class ControleProducaoWebController {
+public class ProdutoWebController {
 	
 	@Autowired
-	private UsuarioService usuarioService;
+	private ProdutoService produtoService;
 
-	@GetMapping("/usuario")
+	@GetMapping("/produto")
 	public ModelAndView novo() {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("usuario", new Usuario());
-		modelAndView.setViewName("usuario/index");
+		modelAndView.addObject("produto", new Produto());
+		modelAndView.setViewName("produto/index");
 		return modelAndView;
 	}
 	
-	@PostMapping("/usuario")
-	public ModelAndView save(@Valid Usuario usuario, BindingResult result, RedirectAttributes attributes) {
-		ModelAndView mv = new ModelAndView("redirect:/usuario/list");
+	@PostMapping("/produto")
+	public ModelAndView save(@Valid Produto produto, BindingResult result, RedirectAttributes attributes) {
+		ModelAndView mv = new ModelAndView("redirect:/lista-produto");
 		
 		try {
-			usuarioService.save(usuario);
+			produtoService.save(produto);
 		} catch (Exception e) {
 			mv.addObject("mensagemErro", "Não foi possível salvar ou editar esse usuário!");
 		}
@@ -42,13 +42,12 @@ public class ControleProducaoWebController {
 		return mv;
 	}
 	
-	@GetMapping("usuario/list")
+	@GetMapping("/lista-produto")
 	public ModelAndView list() {
-		List<Usuario> usuarios = usuarioService.list();
-		ModelAndView mv = new ModelAndView("usuario/list");
-		mv.addObject("usuarios", usuarios);
+		List<Produto> produtos = produtoService.list();
+		ModelAndView mv = new ModelAndView("produto/list");
+		mv.addObject("produtos", produtos);
 		return mv;
-	}
-	
+	}	
 	
 }
