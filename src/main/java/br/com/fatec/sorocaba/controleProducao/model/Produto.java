@@ -1,7 +1,8 @@
 package br.com.fatec.sorocaba.controleProducao.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,8 +13,11 @@ public class Produto {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codProduto;
 	private String descProduto;
+	@Enumerated(EnumType.STRING)
 	private Corte corte;
+	@Enumerated(EnumType.STRING)
 	private Tempero tempero;
+	@Enumerated(EnumType.STRING)
 	private Embalagem embalagem;
 	
 	public Long getCodProduto() {
@@ -32,7 +36,6 @@ public class Produto {
 		this.descProduto = descProduto;
 	}
 	
-	@Column(columnDefinition="ENUM('LISA','ONDULADA')")
 	public Corte getCorte() {
 		return corte;
 	}
@@ -41,7 +44,6 @@ public class Produto {
 		this.corte = corte;
 	}
 	
-	@Column(columnDefinition="ENUM('FRANGO_GRELHADO','MOSTARDA','TRADICIONAL','CHURRASCO','CEBOLA_E_SALSA','COSTELINHA_COM_LIMAO','PIMENTA_MEXICANA')")
 	public Tempero getTempero() {
 		return tempero;
 	}
@@ -50,7 +52,6 @@ public class Produto {
 		this.tempero = tempero;
 	}
 	
-	@Column(columnDefinition="ENUM('G17','G22','G30','G40','G57','G60','G92','G100','G167','G300')")
 	public Embalagem getEmbalagem() {
 		return embalagem;
 	}

@@ -44,3 +44,9 @@ function cpfCnpj(v){
 
     return v
 }
+
+function teste(){
+	alert('OK');
+	var elemento = document.getElementById("dataInicio").value;
+	alert(elemento);
+}

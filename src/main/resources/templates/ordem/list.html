@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{default :: layout(~{::title}, ~{::section})}">
+<head>
+<meta charset="utf-8">
+<title th:text="#{ordem.list}">Ordens</title>
+</head>
+<body>
+	<section>
+		<h2 th:text="#{ordem.list}">Listagem de Ordens</h2>
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr  class="table-primary">
+						<th th:text="#{codOp}">Código</th>
+						<th th:text="#{status}">Status</th>
+						<th th:text="#{produto}">Produto</th>
+						<th th:text="#{quantidade}">Quantidade</th>						
+						<th th:text="#{dataInicio}" >Data Inicio</th>
+						<th th:text="#{dataFim}" >Data Fim</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="ord : ${ordens}">
+						<th th:text="${ord.codOp}">Código</th>
+						<th th:text="${ord.status}">Status</th>
+						<th th:text="${ord.produto.descProduto}">Produto</th>	
+						<th th:text="${ord.produtoOrdem.qtdProd}">Quantidade</th>	
+						<th th:text="${#temporals.format(ord.dataInicio, 'dd/MM/yyyy-HH:mm')}">Data Inicio</th>
+						<th th:text="${#temporals.format(ord.dataFim, 'dd/MM/yyyy-HH:mm')}">Data Inicio</th>				
+
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+	</section>
+</body>
+</html>
