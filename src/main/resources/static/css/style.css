@@ -8341,3 +8341,7 @@ a[data-toggle="collapse"] {
 
 .subscribe-form .form-control {
   background: #3b4ec6; }
+  
+.bg-white py-2 collapse-inner rounded{
+	background: #3b4ec6;
+}

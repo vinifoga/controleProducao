@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{default :: layout(~{::title}, ~{::section})}">
+<head>
+<meta charset="utf-8">
+<title th:text="#{maoDeObra.list}">Maos de Obra</title>
+</head>
+<body>
+	<section>
+		<h2 th:text="#{maoDeObra.list}">Listagem de Maos de Obra</h2>
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr  class="table-primary">
+						<th th:text="#{codigo}">Código</th>
+						<th th:text="#{descricao}">Descrição</th>
+						<th th:text="#{unidadeMedida}">Unidade Medida</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="maos : ${maosDeObra}">
+						<th th:text="${maos.codMO}">Código</th>
+						<td th:text="${maos.descricao}">Descricao</td>
+						<td th:text="${maos.unidadeMedida}">Unidade Medida</td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+	</section>
+</body>
+</html>

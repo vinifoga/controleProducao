@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{default :: layout(~{::title}, ~{::section})}">
+<head>
+<meta charset="utf-8">
+<title th:text="#{equipamento.list}">Equipamento</title>
+</head>
+<body>
+	<section>
+		<h2 th:text="#{equipamento.list}">Listagem de Equipamentos</h2>
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr  class="table-primary">
+						<th th:text="#{codigo}">Código</th>
+						<th th:text="#{descricao}">Descrição</th>
+						<th th:text="#{tempoUso}">Tempo de Uso</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="equip : ${equipamentos}">
+						<th th:text="${equip.codEq}">Código</th>
+						<td th:text="${equip.descricao}">Descricao</td>
+						<td th:text="${#temporals.format(equip.tempoUso, 'HH:mm')}">Descricao</td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+	</section>
+</body>
+</html>
