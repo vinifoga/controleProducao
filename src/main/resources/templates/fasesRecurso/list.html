@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{default :: layout(~{::title}, ~{::section})}">
+<head>
+<meta charset="utf-8">
+<title th:text="#{materia-prima.list}">Materia Prima</title>
+</head>
+<body>
+	<section>
+		<h2 th:text="#{materia-prima.list}">Listagem de Materia Prima</h2>
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr  class="table-primary">
+						<th th:text="#{codigo}">Código</th>
+						<th th:text="#{descricao}">Descrição</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="mat : ${materias}">
+						<th th:text="${mat.codMP}">Código</th>
+						<td th:text="${mat.descricao}">Descricao</td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+	</section>
+</body>
+</html>

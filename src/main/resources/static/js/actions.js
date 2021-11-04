@@ -50,3 +50,9 @@ function teste(){
 	var elemento = document.getElementById("dataInicio").value;
 	alert(elemento);
 }
+
+function addRecurso(){
+	var descricao = document.getElementById("descricao").value;
+	var recurso = document.getElementById("tipoRecurso").value;
+	location.href=`/fases/recurso/${descricao}/${recurso}`;
+}
