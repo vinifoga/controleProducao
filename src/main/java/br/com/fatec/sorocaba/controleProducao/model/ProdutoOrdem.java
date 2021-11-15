@@ -1,13 +1,12 @@
 package br.com.fatec.sorocaba.controleProducao.model;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class ProdutoOrdem {
@@ -15,8 +14,16 @@ public class ProdutoOrdem {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codProdOrdem;
 	private Integer qtdProd;
-	@OneToMany(mappedBy = "produtoOrdem", cascade=CascadeType.ALL)
-	private List<Ordem> ordens;
+	@ManyToOne
+	private Ordem ordem;
+	@ManyToOne
+	private Produto produto;
+	@OneToOne(cascade = CascadeType.ALL)
+	private ReqMaoObra reqMaoObra;
+	@OneToOne(cascade = CascadeType.ALL)
+	private ReqMatPrima reqMatPrima;
+	@OneToOne(cascade = CascadeType.ALL)
+	private ReqEquipamento reqEquipamento;
 	
 	public Long getCodProdOrdem() {
 		return codProdOrdem;
@@ -31,12 +38,18 @@ public class ProdutoOrdem {
 	public void setQtdProd(Integer qtdProd) {
 		this.qtdProd = qtdProd;
 	}
-
-	public List<Ordem> getOrdens() {
-		return ordens;
+	
+	public Produto getProduto() {
+		return produto;
+	}
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 	
-	public void setOrdens(List<Ordem> ordens) {
-		this.ordens = ordens;
+	public Ordem getOrdem() {
+		return ordem;
+	}
+	public void setOrdem(Ordem ordem) {
+		this.ordem = ordem;
 	}
 }

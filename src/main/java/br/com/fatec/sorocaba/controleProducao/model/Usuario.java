@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Type;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,6 +27,8 @@ public class Usuario implements UserDetails{
 	private String nome;
 	private String email;
 	private String senha;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Colaborador colaborador;
 	
 	@Type(type="true_false")
 	private boolean ativo;
@@ -88,6 +92,13 @@ public class Usuario implements UserDetails{
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public Colaborador getColaborador() {
+		return colaborador;
+	}
+	public void setColaborador(Colaborador colaborador) {
+		this.colaborador = colaborador;
 	}
 
 	@Override

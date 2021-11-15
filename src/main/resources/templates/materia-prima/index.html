@@ -9,14 +9,22 @@
 	<section>
 		<div class="col-md-8 order-md-1">
 			<h4 class="mb-3" th:text="#{materia-prima}">Materia Prima</h4>
-			<form action="/materia-prima" th:action="@{/materia-prima}" method="post">
+			<form action="/materia-prima" th:action="@{/materia-prima}"
+				method="post">
 				<div class="row">
-					<div class="mb-3 col-md-12">
+					<div class="mb-3 col-md-6">
 						<label for="nome" th:text="#{descricao}">Descrição</label> <input
-							type="text" class="form-control" id="descricao" name="descricao" required>
-					</div>					
+							type="text" class="form-control" id="descricao" name="descricao"
+							required>
+					</div>
+					<div class="mb-3 col-md-6">
+						<label for="unidadeMedida" th:text="#{unidadeMedida}">Unidade
+							Medida</label> <input type="text" class="form-control" id="unidadeMedida"
+							name="unidadeMedida" required>
+					</div>
+
 				</div>
-			
+
 				<button id="salvar" class="btn btn-success btn-lg btn-block"
 					type="submit" th:value="${save}">Salvar</button>
 				<a href="/lista-materia-prima" th:href="@{/lista-materia-prima}"

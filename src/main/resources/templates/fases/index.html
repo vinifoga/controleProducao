@@ -9,35 +9,37 @@
 	<section>
 		<div class="col-md-8 order-md-1">
 			<h4 class="mb-3" th:text="#{fases}">Fases</h4>
+
 			<form action="/fases" th:action="@{/fases}" method="post">
+				<input type="hidden" th:value="*{numFase}" id="numFase"
+					name="numFase">
 				<div class="row">
 					<div class="mb-3 col-md-12">
-						<label for="nome" th:text="#{descricao}">Descrição</label> <input
-							type="text" class="form-control" id="descricao" name="descricao"
-							required>
-					</div>
-				</div>
-				<div class="row">
-					<div class="mb-3 col-md-10">
-						<label for="tipoRecurso" th:text="#{tipoRecurso}">Tipo
-							Recurso</label> <select class="form-control" id="tipoRecurso"
-							name="tipoRecurso" required="required">
-							<option>Materia-Prima</option>
-							<option>Equipamento</option>
-							<option>Mao-de-Obra</option>
+						<label for="produto" th:text="#{produto}">Produto </label> <select
+							class="form-control" id="produto" name="produto"
+							required="required">
+							<option th:each="prod : ${produtos}"
+								th:value="${prod.codProduto}" th:text="${prod.descProduto}"></option>
 						</select>
 					</div>
 					<div class="mb-3 col-md-2">
-						<label></label>						
-						<a class="btn btn-primary btn-lg btn-block" th:onclick="addRecurso()"><i class="fas fa-plus" style="color:white;"></i><span
-							class="spinner-border float-right"
-							style="width: 2rem; height: 2rem; display: none;" role="status"
-							id="load"></span></a>
+						<label></label>
+						<button id="salvar" class="btn btn-success btn-lg btn-block"
+							type="submit" th:value="${save}">
+							<i class="fas fa-plus" style="color: white;"></i><span
+								class="spinner-border float-right"
+								style="width: 2rem; height: 2rem; display: none;" role="status"
+								id="load"></span>
+						</button>
 					</div>
 				</div>
 
 				<button id="salvar" class="btn btn-success btn-lg btn-block"
-					type="submit" th:value="${save}">Salvar</button>
+					type="submit" th:value="${save}">
+					Salvar<span class="spinner-border float-right"
+						style="width: 2rem; height: 2rem; display: none;" role="status"
+						id="load"></span>
+				</button>
 				<a href="/lista-fases" th:href="@{/lista-fases}"
 					class="btn btn-primary btn-lg btn-block" th:onclick="loading()">Listar<span
 					class="spinner-border float-right"

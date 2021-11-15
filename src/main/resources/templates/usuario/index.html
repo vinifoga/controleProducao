@@ -11,34 +11,19 @@
 			<h4 class="mb-3" th:text="#{usuario}">Usuário</h4>
 			<form action="/usuario" th:action="@{/usuario}" method="post">
 				<div class="row">
-					<div class="mb-3 col-md-10">
+					<div class="mb-3 col-md-3">
+						<label for="matricula" th:text="#{matricula}">Matricula</label> <input
+							type="number" class="form-control" id="matricula" name="matricula">
+					</div>
+					<div class="mb-3 col-md-9">
 						<label for="nome" th:text="#{nome}">Nome</label> <input
-							type="text" class="form-control" id="nome" name="nome" required>
-					</div>
-					<div class="mb-3 col-md-2">
-						<input class="form-check-input" type="checkbox" id="ativo"
-							name="ativo" required> <label class="form-check-label"
-							for="ativo" th:text="#{ativo}">Ativo</label>
+							type="text" class="form-control" id="nome" name="nome" readonly>
 					</div>
 				</div>
-				<div class="row">
-					<div class="mb-3 col-md-6">
-						<label for="email" th:text="#{email}">Email</label> <input
-							type="text" class="form-control" id="email" name="email" required>
-					</div>
-					<div class="mb-3 col-md-6">
-						<label for="senha" th:text="#{senha}">Senha</label> <input
-							type="text" class="form-control" id="senha" name="senha" required>
-					</div>
-				</div>
-				<button id="salvar" class="btn btn-success btn-lg btn-block"
-					type="submit" th:value="${save}">Salvar</button>
-				<a href="/lista-usuario" th:href="@{/lista-usuario}"
-					class="btn btn-primary btn-lg btn-block" th:onclick="loading()">Listar<span
-					class="spinner-border float-right"
-					style="width: 2rem; height: 2rem; display: none;" role="status"
-					id="load"></span></a>
-			</form>
+
+		<a style="color:white" th:onclick="buscaMatricula(matricula.value)"
+			class="btn btn-primary btn-lg btn-block">Buscar</a>
+		</form>
 		</div>
 	</section>
 </body>

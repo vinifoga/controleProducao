@@ -51,8 +51,10 @@ function teste(){
 	alert(elemento);
 }
 
-function addRecurso(){
-	var descricao = document.getElementById("descricao").value;
-	var recurso = document.getElementById("tipoRecurso").value;
-	location.href=`/fases/recurso/${descricao}/${recurso}`;
+function addMP(numFase){
+	window.location.href = `fases/addMP/${numFase}`;
+}
+
+function buscaMatricula(matricula){
+	window.location.href = `usuario/addUsuario/${matricula}`;
 }

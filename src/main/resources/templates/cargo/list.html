@@ -3,27 +3,23 @@
 	th:replace="~{default :: layout(~{::title}, ~{::section})}">
 <head>
 <meta charset="utf-8">
-<title th:text="#{maoDeObra.list}">Maos de Obra</title>
+<title th:text="#{cargo.list}">Cargos</title>
 </head>
 <body>
 	<section>
-		<h2 th:text="#{maoDeObra.list}">Listagem de Maos de Obra</h2>
+		<h2 th:text="#{cargo.list}">Listagem de Cargos</h2>
 		<div class="table-responsive">
 			<table class="table">
 				<thead>
 					<tr  class="table-primary">
-						<th th:text="#{codigo}">Código</th>
-						<th th:text="#{descricao}">Descrição</th>
-						
-						
+						<th th:text="#{codigo}">Codigo</th>						
+						<th th:text="#{descricao}">Descricao</th>						
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="maos : ${maosDeObra}">
-						<th th:text="${maos.cod}">Código</th>
-						<td th:text="${maos.descricao}">Descricao</td>
-						
-
+					<tr th:each="cargo : ${cargos}">
+						<th th:text="${cargo.id}">Codigo</th>
+						<td th:text="${cargo.descricao}">Descrição</td>
 					</tr>
 				</tbody>
 			</table>

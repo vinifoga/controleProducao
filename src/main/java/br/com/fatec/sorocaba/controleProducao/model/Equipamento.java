@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,18 +14,20 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Equipamento {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long codEq;
-	private String descricao;
-	
+	private Long cod;
+	private String descricao;	
 	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime tempoUso;
+	@ManyToOne
+	private ProdutoFaseEquipamento produtoFaseEquipamento;
+	
 
-	public Long getCodEq() {
-		return codEq;
+	public Long getCod() {
+		return cod;
 	}
-
-	public void setCodEq(Long codEq) {
-		this.codEq = codEq;
+	
+	public void setCod(Long cod) {
+		this.cod = cod;
 	}
 
 	public String getDescricao() {
@@ -43,5 +46,12 @@ public class Equipamento {
 		this.tempoUso = tempoUso;
 	}
 	
+	public ProdutoFaseEquipamento getProdutoFaseEquipamento() {
+		return produtoFaseEquipamento;
+	}
+	
+	public void setProdutoFaseEquipamento(ProdutoFaseEquipamento produtoFaseEquipamento) {
+		this.produtoFaseEquipamento = produtoFaseEquipamento;
+	}
 	
 }

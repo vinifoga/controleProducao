@@ -16,31 +16,51 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.fatec.sorocaba.controleProducao.model.Fase;
+import br.com.fatec.sorocaba.controleProducao.model.Produto;
+import br.com.fatec.sorocaba.controleProducao.service.EquipamentoService;
 import br.com.fatec.sorocaba.controleProducao.service.FaseService;
+import br.com.fatec.sorocaba.controleProducao.service.MaoDeObraService;
+import br.com.fatec.sorocaba.controleProducao.service.MateriaPrimaService;
+import br.com.fatec.sorocaba.controleProducao.service.ProdutoService;
 
 @Controller
 public class FaseWebController {
 	
 	@Autowired
 	private FaseService faseService;
+	
+	@Autowired
+	private MateriaPrimaService materiaPrimaService;
+	
+	@Autowired
+	private MaoDeObraService maoDeObraService;
+	
+	@Autowired
+	private EquipamentoService equipamentoService;
+	
+	@Autowired
+	private ProdutoService produtoService;
 
 	@GetMapping("/fases")
 	public ModelAndView novo() {
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("produtos", produtoService.list());
 		modelAndView.setViewName("fases/index");
 		return modelAndView;
 	}
 	
 	@PostMapping("/fases")
-	public ModelAndView save(@Valid Fase fase, BindingResult result, RedirectAttributes attributes) {
-		ModelAndView mv = new ModelAndView("redirect:/lista-fase");
+	public ModelAndView save(@Valid Produto produto, BindingResult result, RedirectAttributes attributes) {
 		
 		try {
-			faseService.save(fase);
+			Fase fase = new Fase();
+
 		} catch (Exception e) {
-			mv.addObject("mensagemErro", "Não foi possível salvar ou editar!");
+			System.out.println(e);
 		}
 		attributes.addFlashAttribute("mensagemSucesso", "Criado ou alterado com sucesso!");
+
+		ModelAndView mv = new ModelAndView("redirect:/lista-fases");
 		return mv;
 	}
 	
@@ -52,12 +72,23 @@ public class FaseWebController {
 		return mv;
 	}
 	
-	@GetMapping("/fases/recurso/{descricao}/{recurso}")
-	public ModelAndView novoRecurso(@PathVariable("descricao") String descricao, @PathVariable("recurso") String recurso, HttpServletRequest request, HttpServletResponse response) {
+	@GetMapping("/fases/addMP/{numFase}")
+	public ModelAndView novoRecurso(@PathVariable("numFase") Long numFase, HttpServletRequest request, HttpServletResponse response) {
+		Fase fase = faseService.findById(numFase).get();		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("fase", new Fase());
-		modelAndView.setViewName("fasesRecurso/index");
+		modelAndView.addObject("mps", materiaPrimaService.list());		
+		modelAndView.addObject("fase", fase);
+		modelAndView.setViewName("fases/matPrima");
 		return modelAndView;
+	}
+	
+	@PostMapping("/fases/addMP/{numFase}")
+	public ModelAndView salvaMP(@PathVariable("numFase") Long numFase, HttpServletRequest request, HttpServletResponse responde) {
+		
+		
+		
+		return null;
+		
 	}
 	
 }

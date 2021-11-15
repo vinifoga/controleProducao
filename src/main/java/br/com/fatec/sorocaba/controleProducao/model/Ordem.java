@@ -1,7 +1,9 @@
 package br.com.fatec.sorocaba.controleProducao.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -9,7 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,10 +26,10 @@ public class Ordem {
 	private LocalDateTime dataInicio;
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime dataFim;
-	@OneToOne
-	private Produto produto;
+	@OneToMany(mappedBy = "ordem", cascade=CascadeType.ALL)
+	private List<ProdutoOrdem> produtoOrdem;
 	@ManyToOne
-	private ProdutoOrdem produtoOrdem;
+	private Colaborador colaborador;
 	
 	public Long getCodOp() {
 		return codOp;
@@ -61,20 +63,19 @@ public class Ordem {
 		this.dataFim = dataFim;
 	}
 	
-	public Produto getProduto() {
-		return produto;
-	}
-	
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-	
-	public ProdutoOrdem getProdutoOrdem() {
+	public List<ProdutoOrdem> getProdutoOrdem() {
 		return produtoOrdem;
 	}
-	
-	public void setProdutoOrdem(ProdutoOrdem produtoOrdem) {
+	public void setProdutoOrdem(List<ProdutoOrdem> produtoOrdem) {
 		this.produtoOrdem = produtoOrdem;
+	}
+
+	public Colaborador getColaborador() {
+		return colaborador;
+	}
+	
+	public void setColaborador(Colaborador colaborador) {
+		this.colaborador = colaborador;
 	}
 	
 }

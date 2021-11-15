@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{default :: layout(~{::title}, ~{::section})}">
+<head>
+<meta charset="utf-8">
+<title th:text="#{usuario}">Usuário</title>
+</head>
+<body>
+	<section>
+		<div class="col-md-8 order-md-1">
+			<h4 class="mb-3" th:text="#{usuario}">Usuário</h4>
+			<form action="/usuario" th:action="@{/usuario}"
+				th:object="${usuario}" method="post">
+				<div class="row">
+					<div class="mb-3 col-md-2">
+						<label for="colaborador.matricula" th:text="#{matricula}">Matricula</label>
+						<input type="number" class="form-control"
+							id="colaborador.matricula" name="colaborador.matricula"
+							th:value="*{colaborador.matricula}" readonly>
+					</div>
+					<div class="mb-3 col-md-8">
+						<label for="nome" th:text="#{nome}">Nome</label> <input
+							type="text" class="form-control" id="nome" name="nome"
+							th:value="*{nome}" readonly>
+					</div>
+					<div class="mb-3 col-md-2">
+						<label for="ativo" th:text="#{ativo}">Ativo</label> <input
+							type="checkbox" class="form-control" id="ativo" name="ativo"
+							>
+					</div>
+				</div>
+				<div class="row">
+					<div class="mb-3 col-md-6">
+						<label for="email" th:text="#{email}">Email</label> <input type="text" class="form-control" id="email" name="email" th:value="*{email}">
+					</div>
+					<div class="mb-3 col-md-6">
+						<label for="senha" th:text="#{senha}">Senha</label> <input type="text" class="form-control" id="senha" name="senha" th:value="*{senha}">
+					</div>
+				</div>
+				
+				
+
+				<button id="salvar" class="btn btn-success btn-lg btn-block"
+					type="submit" th:value="${save}">
+					Salvar<span class="spinner-border float-right"
+						style="width: 2rem; height: 2rem; display: none;" role="status"
+						id="load"></span>
+				</button>
+				<a href="/lista-usuario" th:href="@{/lista-usuario}"
+					class="btn btn-primary btn-lg btn-block" th:onclick="loading()">Listar<span
+					class="spinner-border float-right"
+					style="width: 2rem; height: 2rem; display: none;" role="status"
+					id="load"></span></a>
+			</form>
+		</div>
+	</section>
+</body>
+</html>

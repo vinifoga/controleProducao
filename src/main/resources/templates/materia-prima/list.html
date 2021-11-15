@@ -14,13 +14,15 @@
 					<tr  class="table-primary">
 						<th th:text="#{codigo}">Código</th>
 						<th th:text="#{descricao}">Descrição</th>
+						<th th:text="#{unidadeMedida}">Unidade Medida</th>
 						
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="mat : ${materias}">
-						<th th:text="${mat.codMP}">Código</th>
+						<th th:text="${mat.cod}">Código</th>
 						<td th:text="${mat.descricao}">Descricao</td>
+						<td th:text="${mat.unidadeMedida}">Unidade Medida</td>
 
 					</tr>
 				</tbody>

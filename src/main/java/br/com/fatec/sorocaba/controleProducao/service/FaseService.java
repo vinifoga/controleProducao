@@ -1,6 +1,7 @@
 package br.com.fatec.sorocaba.controleProducao.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -23,6 +24,10 @@ public class FaseService {
 
 	public List<Fase> list() {
 		return faseRepository.findAll();
+	}
+	
+	public Optional<Fase> findById(Long id) {
+		return faseRepository.findById(id);
 	}
 	
 }

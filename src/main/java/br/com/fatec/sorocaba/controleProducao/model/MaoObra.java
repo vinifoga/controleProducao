@@ -4,33 +4,36 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class MaoObra {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long codMO;
-	private String descricao;
-	private String unidadeMedida;
-	
-	public Long getCodMO() {
-		return codMO;
+	private Long cod;
+	private String descricao;	
+	@ManyToOne
+	private ProdutoFaseMaoObra produtoFaseMaoObra;
+
+	public Long getCod() {
+		return cod;
 	}
-	public void setCodMO(Long codMO) {
-		this.codMO = codMO;
+	public void setCod(Long cod) {
+		this.cod = cod;
 	}
+
 	public String getDescricao() {
 		return descricao;
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public String getUnidadeMedida() {
-		return unidadeMedida;
+	
+	public ProdutoFaseMaoObra getProdutoFaseMaoObra() {
+		return produtoFaseMaoObra;
 	}
-	public void setUnidadeMedida(String unidadeMedida) {
-		this.unidadeMedida = unidadeMedida;
+	public void setProdutoFaseMaoObra(ProdutoFaseMaoObra produtoFaseMaoObra) {
+		this.produtoFaseMaoObra = produtoFaseMaoObra;
 	}
-
 	
 }

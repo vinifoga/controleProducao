@@ -20,7 +20,7 @@
 				</thead>
 				<tbody>
 					<tr th:each="equip : ${equipamentos}">
-						<th th:text="${equip.codEq}">Código</th>
+						<th th:text="${equip.cod}">Código</th>
 						<td th:text="${equip.descricao}">Descricao</td>
 						<td th:text="${#temporals.format(equip.tempoUso, 'HH:mm')}">Descricao</td>
 

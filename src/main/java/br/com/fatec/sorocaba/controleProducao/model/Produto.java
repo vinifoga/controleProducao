@@ -1,11 +1,15 @@
 package br.com.fatec.sorocaba.controleProducao.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Produto {
@@ -19,6 +23,10 @@ public class Produto {
 	private Tempero tempero;
 	@Enumerated(EnumType.STRING)
 	private Embalagem embalagem;
+	@OneToMany(mappedBy = "produto", cascade=CascadeType.ALL)
+	private List<ProdutoFase> produtosFase;
+	@OneToMany(mappedBy = "produto", cascade=CascadeType.ALL)
+	private List<ProdutoOrdem> produtoOrdem;
 	
 	public Long getCodProduto() {
 		return codProduto;
@@ -58,5 +66,19 @@ public class Produto {
 	
 	public void setEmbalagem(Embalagem embalagem) {
 		this.embalagem = embalagem;
+	}
+	
+	public List<ProdutoFase> getProdutosFase() {
+		return produtosFase;
+	}
+	public void setProdutosFase(List<ProdutoFase> produtosFase) {
+		this.produtosFase = produtosFase;
+	}
+	
+	public List<ProdutoOrdem> getProdutoOrdem() {
+		return produtoOrdem;
+	}
+	public void setProdutoOrdem(List<ProdutoOrdem> produtoOrdem) {
+		this.produtoOrdem = produtoOrdem;
 	}
 }

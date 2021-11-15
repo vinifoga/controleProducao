@@ -32,7 +32,7 @@ public class OrdemWebController {
 		ModelAndView modelAndView = new ModelAndView();
 		ProdutoOrdem produtoOrdem = new ProdutoOrdem();
 		Ordem ordem = new Ordem();
-		ordem.setProdutoOrdem(produtoOrdem);
+		ordem.getProdutoOrdem().add(produtoOrdem);
 		modelAndView.addObject(ordem);		
 		modelAndView.addObject("produtos", produtoService.list());
 		modelAndView.setViewName("ordem/index");
@@ -44,12 +44,12 @@ public class OrdemWebController {
 		System.out.println(LocalDateTime.now());
 		ModelAndView mv = new ModelAndView("redirect:/lista-ordem");
 		System.out.println(LocalDateTime.now());
-		try {
-			ordemService.save(ordem, ordem.getProdutoOrdem());
-		} catch (Exception e) {
-			mv.addObject("mensagemErro", "Não foi possível salvar ou editar esse usuário!");
-		}
-		attributes.addFlashAttribute("mensagemSucesso", "Ordem criado ou alterado com sucesso!");
+//		try {
+//			ordemService.save(ordem, ordem.getProdutoOrdem());
+//		} catch (Exception e) {
+//			mv.addObject("mensagemErro", "Não foi possível salvar ou editar esse usuário!");
+//		}
+//		attributes.addFlashAttribute("mensagemSucesso", "Ordem criado ou alterado com sucesso!");
 		return mv;
 	}
 	
