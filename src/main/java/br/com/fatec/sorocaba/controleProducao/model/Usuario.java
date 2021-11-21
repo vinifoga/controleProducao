@@ -6,10 +6,11 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -36,8 +37,12 @@ public class Usuario implements UserDetails{
 	@Type(type="true_false")
 	private boolean ativo;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	private List<Perfil> perfis = new ArrayList<>();
+	@ManyToMany
+	@JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(
+			name = "usuario_id", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(
+			name = "role_id", referencedColumnName = "nomeRole"))
+	private List<Role> roles = new ArrayList<>();
 	
 
 	@Override
@@ -103,11 +108,6 @@ public class Usuario implements UserDetails{
 	public void setColaborador(Colaborador colaborador) {
 		this.colaborador = colaborador;
 	}
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return this.perfis;
-	}
 	
 	public boolean isAtivo() {
 		return ativo;
@@ -123,7 +123,20 @@ public class Usuario implements UserDetails{
 	public void setOrdem(List<Ordem> ordem) {
 		this.ordem = ordem;
 	}
+	
+	public List<Role> getRoles() {
+		return roles;
+	}
+	
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
 
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return roles;
+	}
+	
 	@Override
 	public String getPassword() {
 		return this.senha;

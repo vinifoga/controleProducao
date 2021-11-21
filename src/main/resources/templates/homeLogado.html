@@ -8,7 +8,7 @@
 <title>Controle de Produção</title>
 </head>
 <body>
-	<section>
+	<section th:object="${usuario}">
 		<div class="row justify-content-md-center">
 			<figure>
 				<img src="/img/denisico.png">
@@ -20,9 +20,8 @@
 				<div class="card-header">Controle de Produção</div>
 				<div class="card-body">
 					<h5 class="card-title">Sistema para Controle de Produção</h5>
-					<p class="card-text">Para ter acesso ao sistema o usuário
-						precisa estar logado</p>
-					<a href="/login" class="btn btn-primary">Fazer Login</a>
+					<p class="card-text">Usuario Logado</p>
+					<p th:text="${usuario}"></p>
 				</div>
 			</div>
 		</div>
