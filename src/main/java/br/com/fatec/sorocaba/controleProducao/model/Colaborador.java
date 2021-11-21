@@ -23,9 +23,7 @@ public class Colaborador {
 	@ManyToOne
 	private Cargo cargo;
 	@Enumerated(EnumType.STRING)
-	private StatusColaborador status;
-	@OneToMany(mappedBy = "colaborador", cascade = CascadeType.ALL)
-	private List<Ordem> ordem;
+	private StatusColaborador status;	
 	@OneToOne(mappedBy = "colaborador")
 	private Usuario usuario;
 	
@@ -59,14 +57,6 @@ public class Colaborador {
 
 	public void setStatus(StatusColaborador status) {
 		this.status = status;
-	}
-
-	public List<Ordem> getOrdem() {
-		return ordem;
-	}
-
-	public void setOrdem(List<Ordem> ordem) {
-		this.ordem = ordem;
 	}
 	
 	public Usuario getUsuario() {

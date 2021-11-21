@@ -12,16 +12,19 @@
 			<form action="/materia-prima" th:action="@{/materia-prima}"
 				method="post">
 				<div class="row">
-					<div class="mb-3 col-md-6">
+					<div class="mb-3 col-md-12">
 						<label for="nome" th:text="#{descricao}">Descrição</label> <input
 							type="text" class="form-control" id="descricao" name="descricao"
 							required>
 					</div>
-					<div class="mb-3 col-md-6">
+					</div>
+					<div class="row">
+					<div class="mb-3 col-md-10">
 						<label for="unidadeMedida" th:text="#{unidadeMedida}">Unidade
 							Medida</label> <input type="text" class="form-control" id="unidadeMedida"
 							name="unidadeMedida" required>
 					</div>
+					
 
 				</div>
 

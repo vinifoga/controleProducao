@@ -1,14 +1,12 @@
 package br.com.fatec.sorocaba.controleProducao.model;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class ProdutoFaseEquipamento {
@@ -18,10 +16,10 @@ public class ProdutoFaseEquipamento {
 	private Integer qtdeEq;
 	@ManyToOne
 	private ProdutoFase produtoFase;
-	@OneToMany(mappedBy="produtoFaseEquipamento", cascade=CascadeType.ALL)
-	private List<Equipamento> equipamento;
-	@OneToMany(mappedBy="produtoFaseEquipamento", cascade=CascadeType.ALL)
-	private List<EquipamentoReq> equipamentoReq;
+	@OneToOne
+	private Equipamento equipamento;
+	@OneToOne(mappedBy="produtoFaseEquipamento", cascade=CascadeType.ALL)
+	private EquipamentoReq equipamentoReq;
 	
 	public Long getCodProdFaseEquip() {
 		return codProdFaseEquip;
@@ -42,19 +40,17 @@ public class ProdutoFaseEquipamento {
 		this.produtoFase = produtoFase;
 	}
 	
-	public List<Equipamento> getEquipamento() {
+	public Equipamento getEquipamento() {
 		return equipamento;
 	}
-	public void setEquipamento(List<Equipamento> equipamento) {
+	public void setEquipamento(Equipamento equipamento) {
 		this.equipamento = equipamento;
 	}
 	
-	public List<EquipamentoReq> getEquipamentoReq() {
+	public EquipamentoReq getEquipamentoReq() {
 		return equipamentoReq;
 	}
-	public void setEquipamentoReq(List<EquipamentoReq> equipamentoReq) {
+	public void setEquipamentoReq(EquipamentoReq equipamentoReq) {
 		this.equipamentoReq = equipamentoReq;
-	}
-	
-	
+	}	
 }

@@ -1,17 +1,22 @@
 package br.com.fatec.sorocaba.controleProducao.model;
 
+import java.time.LocalTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class EquipamentoReq {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codEquipReq;
-	private Long tempoUso;
+	@DateTimeFormat(pattern = "HH:mm")
+	private LocalTime tempoUso;
 	private String unidadeMedida;
 	@ManyToOne
 	private ProdutoFaseEquipamento produtoFaseEquipamento;
@@ -25,10 +30,10 @@ public class EquipamentoReq {
 	public void setCodEquipReq(Long codEquipReq) {
 		this.codEquipReq = codEquipReq;
 	}
-	public Long getTempoUso() {
+	public LocalTime getTempoUso() {
 		return tempoUso;
 	}
-	public void setTempoUso(Long tempoUso) {
+	public void setTempoUso(LocalTime tempoUso) {
 		this.tempoUso = tempoUso;
 	}
 	public String getUnidadeMedida() {

@@ -18,17 +18,20 @@
 						<th th:text="#{quantidade}">Quantidade</th>						
 						<th th:text="#{dataInicio}" >Data Inicio</th>
 						<th th:text="#{dataFim}" >Data Fim</th>
+						<th th:text="#{colaborador}">Usuario</th>
 						
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="ord : ${ordens}">
-						<th th:text="${ord.codOp}">Código</th>
-						<th th:text="${ord.status}">Status</th>
+						<th th:text="${ord.ordem.codOp}">Código</th>
+						<th th:text="${ord.ordem.status}">Status</th>
 						<th th:text="${ord.produto.descProduto}">Produto</th>	
-						<th th:text="${ord.produtoOrdem.qtdProd}">Quantidade</th>	
-						<th th:text="${#temporals.format(ord.dataInicio, 'dd/MM/yyyy-HH:mm')}">Data Inicio</th>
-						<th th:text="${#temporals.format(ord.dataFim, 'dd/MM/yyyy-HH:mm')}">Data Inicio</th>				
+						<th th:text="${ord.qtdProd}">Quantidade</th>	
+						<th th:text="${#temporals.format(ord.ordem.dataInicio, 'dd/MM/yyyy-HH:mm')}">Data Inicio</th>
+						<th th:text="${#temporals.format(ord.ordem.dataFim, 'dd/MM/yyyy-HH:mm')}">Data Inicio</th>	
+						<th th:if="${ord.ordem.usuario}==null">Não registrado</th>	
+						<th th:unless="${ord.ordem.usuario}==null" th:text="${ord.ordem.usuario.nome}">Usuario</th>				
 
 					</tr>
 				</tbody>

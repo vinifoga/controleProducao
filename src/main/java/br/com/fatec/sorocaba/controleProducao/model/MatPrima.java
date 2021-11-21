@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class MatPrima {
@@ -14,8 +13,6 @@ public class MatPrima {
 	private Long cod;
 	private String descricao;
 	private String unidadeMedida;
-	@ManyToOne
-	private ProdutoFaseMat produtoFaseMatPrima;
 
 	public Long getCod() {
 		return cod;
@@ -39,12 +36,5 @@ public class MatPrima {
 
 	public void setUnidadeMedida(String unidadeMedida) {
 		this.unidadeMedida = unidadeMedida;
-	}
-
-	public ProdutoFaseMat getProdutoFaseMatPrima() {
-		return produtoFaseMatPrima;
-	}
-	public void setProdutoFaseMatPrima(ProdutoFaseMat produtoFaseMatPrima) {
-		this.produtoFaseMatPrima = produtoFaseMatPrima;
 	}
 }

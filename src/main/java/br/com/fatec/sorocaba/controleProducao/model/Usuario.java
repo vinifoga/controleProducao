@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Type;
@@ -29,6 +30,8 @@ public class Usuario implements UserDetails{
 	private String senha;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Colaborador colaborador;
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private List<Ordem> ordem;
 	
 	@Type(type="true_false")
 	private boolean ativo;
@@ -112,6 +115,13 @@ public class Usuario implements UserDetails{
 	
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
+	}
+	public List<Ordem> getOrdem() {
+		return ordem;
+	}
+
+	public void setOrdem(List<Ordem> ordem) {
+		this.ordem = ordem;
 	}
 
 	@Override

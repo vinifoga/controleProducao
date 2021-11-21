@@ -1,10 +1,11 @@
 package br.com.fatec.sorocaba.controleProducao.model;
 
+import java.time.LocalTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class MaoObra {
@@ -12,8 +13,8 @@ public class MaoObra {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long cod;
 	private String descricao;	
-	@ManyToOne
-	private ProdutoFaseMaoObra produtoFaseMaoObra;
+	private String unidadeMedida;
+	private LocalTime tempoTrabalho;
 
 	public Long getCod() {
 		return cod;
@@ -29,11 +30,18 @@ public class MaoObra {
 		this.descricao = descricao;
 	}
 	
-	public ProdutoFaseMaoObra getProdutoFaseMaoObra() {
-		return produtoFaseMaoObra;
+	public String getUnidadeMedida() {
+		return unidadeMedida;
 	}
-	public void setProdutoFaseMaoObra(ProdutoFaseMaoObra produtoFaseMaoObra) {
-		this.produtoFaseMaoObra = produtoFaseMaoObra;
+	public void setUnidadeMedida(String unidadeMedida) {
+		this.unidadeMedida = unidadeMedida;
+	}
+	
+	public LocalTime getTempoTrabalho() {
+		return tempoTrabalho;
+	}
+	public void setTempoTrabalho(LocalTime tempoTrabalho) {
+		this.tempoTrabalho = tempoTrabalho;
 	}
 	
 }

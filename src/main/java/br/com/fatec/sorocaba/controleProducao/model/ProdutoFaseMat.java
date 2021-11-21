@@ -1,27 +1,25 @@
 package br.com.fatec.sorocaba.controleProducao.model;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class ProdutoFaseMat {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codProdFaseMat;
-	private Integer qtdeMP;
+	private Double qtdeMP;
 	@ManyToOne
 	private ProdutoFase produtoFase;
-	@OneToMany(mappedBy="produtoFaseMatPrima", cascade=CascadeType.ALL)
-	private List<MatPrima> matPrima;
-	@OneToMany(mappedBy="produtoFaseMatPrima", cascade=CascadeType.ALL)
-	private List<MatPrimaReq> matPrimaReq;
+	@OneToOne
+	private MatPrima matPrima;
+	@OneToOne(mappedBy="produtoFaseMatPrima", cascade=CascadeType.ALL)
+	private MatPrimaReq matPrimaReq;
 	
 	
 	public Long getCodProdFaseMat() {
@@ -30,10 +28,10 @@ public class ProdutoFaseMat {
 	public void setCodProdFaseMat(Long codProdFaseMat) {
 		this.codProdFaseMat = codProdFaseMat;
 	}
-	public Integer getQtdeMP() {
+	public Double getQtdeMP() {
 		return qtdeMP;
 	}
-	public void setQtdeMP(Integer qtdeMP) {
+	public void setQtdeMP(Double qtdeMP) {
 		this.qtdeMP = qtdeMP;
 	}
 	public ProdutoFase getProdutoFase() {
@@ -43,17 +41,17 @@ public class ProdutoFaseMat {
 		this.produtoFase = produtoFase;
 	}
 	
-	public List<MatPrima> getMatPrima() {
+	public MatPrima getMatPrima() {
 		return matPrima;
 	}
-	public void setMatPrima(List<MatPrima> matPrima) {
+	public void setMatPrima(MatPrima matPrima) {
 		this.matPrima = matPrima;
 	}
 	
-	public List<MatPrimaReq> getMatPrimaReq() {
+	public MatPrimaReq getMatPrimaReq() {
 		return matPrimaReq;
 	}
-	public void setMatPrimaReq(List<MatPrimaReq> matPrimaReq) {
+	public void setMatPrimaReq(MatPrimaReq matPrimaReq) {
 		this.matPrimaReq = matPrimaReq;
 	}
 	

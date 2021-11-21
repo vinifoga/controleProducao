@@ -1,6 +1,5 @@
 package br.com.fatec.sorocaba.controleProducao.controller;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,8 +14,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.fatec.sorocaba.controleProducao.model.Ordem;
 import br.com.fatec.sorocaba.controleProducao.model.ProdutoOrdem;
+import br.com.fatec.sorocaba.controleProducao.model.Usuario;
 import br.com.fatec.sorocaba.controleProducao.service.OrdemService;
+import br.com.fatec.sorocaba.controleProducao.service.ProdutoOrdemService;
 import br.com.fatec.sorocaba.controleProducao.service.ProdutoService;
+import br.com.fatec.sorocaba.controleProducao.service.UsuarioService;
 
 @Controller
 public class OrdemWebController {
@@ -26,24 +28,32 @@ public class OrdemWebController {
 	
 	@Autowired
 	private ProdutoService produtoService;
+	
+	@Autowired
+	private ProdutoOrdemService produtoOrdemService;
+	
+	@Autowired
+	private UsuarioService usuarioService;
 
 	@GetMapping("/ordem")
 	public ModelAndView novo() {
 		ModelAndView modelAndView = new ModelAndView();
-		ProdutoOrdem produtoOrdem = new ProdutoOrdem();
-		Ordem ordem = new Ordem();
-		ordem.getProdutoOrdem().add(produtoOrdem);
-		modelAndView.addObject(ordem);		
+		ProdutoOrdem pf = new ProdutoOrdem();
+		pf.setOrdem(new Ordem());
+		modelAndView.addObject("produtoOrdem", pf);		
 		modelAndView.addObject("produtos", produtoService.list());
+		modelAndView.addObject("usuarios", usuarioService.list());
 		modelAndView.setViewName("ordem/index");
 		return modelAndView;
 	}
 	
 	@PostMapping("/ordem")
-	public ModelAndView save(@Valid Ordem ordem, BindingResult result, RedirectAttributes attributes) {
-		System.out.println(LocalDateTime.now());
+	public ModelAndView save(@Valid ProdutoOrdem produtoOrdem, @Valid Ordem ordem, @Valid Usuario usuario, BindingResult result, RedirectAttributes attributes) {
 		ModelAndView mv = new ModelAndView("redirect:/lista-ordem");
-		System.out.println(LocalDateTime.now());
+		ordemService.save(ordem);
+		ProdutoOrdem produtoOrdemSalvo = produtoOrdemService.save(produtoOrdem, ordem);
+		ordemService.gerarRequisicoes(produtoOrdemSalvo);
+		
 //		try {
 //			ordemService.save(ordem, ordem.getProdutoOrdem());
 //		} catch (Exception e) {
@@ -55,7 +65,7 @@ public class OrdemWebController {
 	
 	@GetMapping("/lista-ordem")
 	public ModelAndView list() {
-		List<Ordem> ordens = ordemService.list();
+		List<ProdutoOrdem> ordens = produtoOrdemService.list();
 		ModelAndView mv = new ModelAndView("ordem/list");
 		mv.addObject("ordens", ordens);
 		return mv;

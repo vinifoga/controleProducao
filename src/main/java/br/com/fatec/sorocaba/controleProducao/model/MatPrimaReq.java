@@ -11,7 +11,6 @@ public class MatPrimaReq {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codMatPrimaReq;
-	private Integer qtdeReqMP;
 	private String unidMedida;
 	@ManyToOne
 	private ReqMatPrima reqMatPrima;
@@ -25,12 +24,7 @@ public class MatPrimaReq {
 	public void setCodMatPrimaReq(Long codMatPrimaReq) {
 		this.codMatPrimaReq = codMatPrimaReq;
 	}
-	public Integer getQtdeReqMP() {
-		return qtdeReqMP;
-	}
-	public void setQtdeReqMP(Integer qtdeReqMP) {
-		this.qtdeReqMP = qtdeReqMP;
-	}
+
 	public String getUnidMedida() {
 		return unidMedida;
 	}

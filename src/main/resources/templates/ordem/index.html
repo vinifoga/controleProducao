@@ -9,17 +9,20 @@
 	<section>
 		<div class="col-md-8 order-md-1">
 			<h4 class="mb-3" th:text="#{ordem}">Ordem</h4>
-			<form action="/ordem" th:action="@{/ordem}" method="post">
+			<form action="/ordem" th:action="@{/ordem}" th:object="${produtoOrdem}" method="post">
 				<div class="row">
 					<div class="mb-3 col-md-2">
 						<label for="codOp" th:text="#{codOp}">Código</label> <input
-							type="text" class="form-control" id="codOp" name="codOp" th:value="*{codOp}" readonly>
+							type="text" class="form-control" id="codOp" name="codOp" th:value="*{ordem.codOp}?:''" readonly>
 					</div>	
 					<div class="mb-3 col-md-10">
 						<label for="status" th:text="#{status}">Status</label>
 						<select class="form-control" id="status" name="status" required="required">
-						<option th:each="status : ${T(br.com.fatec.sorocaba.controleProducao.model.StatusOp).values()}" th:value="${status}" th:text="${status}"
-						th:selected="${status == ordem.status}"></option>
+						<option th:if="*{ordem.status} == null" th:each="status : ${T(br.com.fatec.sorocaba.controleProducao.model.StatusOp).values()}" th:value="${status}" th:text="${status}"
+						></option>
+						<option th:unless="*{ordem.status} == null" th:each="status : ${T(br.com.fatec.sorocaba.controleProducao.model.StatusOp).values()}" th:value="${status}" th:text="${status}"
+						th:selected="${status == produtoOrdem.ordem.status}"
+						></option>
 						</select>
 					</div>
 					
@@ -36,7 +39,7 @@
 					<div class="mb-3 col-md-2">
 						<label for="produtoOrdem.qtdProd" th:text="#{quantidade}">Quantidade
 						</label>
-						<input class="form-control" type="number" id="produtoOrdem.qtdProd" name="produtoOrdem.qtdProd" required />
+						<input class="form-control" type="number" id="qtdProd" name="qtdProd" required />
 						
 					</div>
 				</div>
@@ -45,14 +48,28 @@
 					<div class="mb-3 col-md-6">
 						<label for="dataInicio" th:text="#{dataInicio}">Data Inicio</label> <input type="datetime-local" class="form-control"
 								id="dataInicio" name="dataInicio"
-								th:value="*{dataInicio}" required>
+								th:value="*{ordem.dataInicio}" required>
 					</div>
 					<div class="mb-3 col-md-6">
 						<label for="dataFim" th:text="#{dataFim}">Data Fim</label> <input type="datetime-local" class="form-control"
 								id="dataFim" name="dataFim"
-								th:value="*{dataFim}" required>
+								th:value="*{ordem.dataFim}" required>
 					</div>					
 				</div>		
+				
+				<div class="row">
+					<div class="mb-3 col-md-12">
+						<label for="usuario" th:text="#{produto}">Produto
+						</label>
+						<select class="form-control" id="usuario" name="usuario" >
+							<option th:each="user : ${usuarios}" th:value="${user.id}" th:text="${user.nome}"></option>
+						</select>
+					</div>		
+					
+					
+							
+				</div>
+				
 				<button id="salvar" class="btn btn-success btn-lg btn-block"
 					type="submit" th:value="${save}">Salvar</button>
 				<a href="/lista-ordem" th:href="@{/lista-ordem}"

@@ -1,5 +1,7 @@
 package br.com.fatec.sorocaba.controleProducao.model;
 
+import java.time.LocalTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,7 +13,7 @@ public class MaoObraReq {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codMaoObraReq;
-	private Long tempoTrabalhado;
+	private LocalTime tempoTrabalhado;
 	private String unidadeMedida;
 	@ManyToOne
 	private ReqMaoObra reqMaoObra;
@@ -25,10 +27,10 @@ public class MaoObraReq {
 	public void setCodMaoObraReq(Long codMaoObraReq) {
 		this.codMaoObraReq = codMaoObraReq;
 	}
-	public Long getTempoTrabalhado() {
+	public LocalTime getTempoTrabalhado() {
 		return tempoTrabalhado;
 	}
-	public void setTempoTrabalhado(Long tempoTrabalhado) {
+	public void setTempoTrabalhado(LocalTime tempoTrabalhado) {
 		this.tempoTrabalhado = tempoTrabalhado;
 	}
 	public String getUnidadeMedida() {

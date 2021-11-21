@@ -10,11 +10,9 @@
 		<div class="col-md-8 order-md-1">
 			<h4 class="mb-3" th:text="#{fases}">Fases</h4>
 
-			<form action="/fases" th:action="@{/fases}" method="post">
-				<input type="hidden" th:value="*{numFase}" id="numFase"
-					name="numFase">
+			<form action="/fases" th:action="@{/fases}" method="post">			
 				<div class="row">
-					<div class="mb-3 col-md-12">
+					<div class="mb-3 col-md-10">
 						<label for="produto" th:text="#{produto}">Produto </label> <select
 							class="form-control" id="produto" name="produto"
 							required="required">
@@ -24,28 +22,18 @@
 					</div>
 					<div class="mb-3 col-md-2">
 						<label></label>
-						<button id="salvar" class="btn btn-success btn-lg btn-block"
-							type="submit" th:value="${save}">
-							<i class="fas fa-plus" style="color: white;"></i><span
+						<a class="btn btn-success btn-lg btn-block"
+							type="button" th:onclick="produtoFase()">
+							<i class="fas fa-eye" style="color: white;"></i><span
 								class="spinner-border float-right"
 								style="width: 2rem; height: 2rem; display: none;" role="status"
 								id="load"></span>
-						</button>
+						</a>
 					</div>
 				</div>
-
-				<button id="salvar" class="btn btn-success btn-lg btn-block"
-					type="submit" th:value="${save}">
-					Salvar<span class="spinner-border float-right"
-						style="width: 2rem; height: 2rem; display: none;" role="status"
-						id="load"></span>
-				</button>
-				<a href="/lista-fases" th:href="@{/lista-fases}"
-					class="btn btn-primary btn-lg btn-block" th:onclick="loading()">Listar<span
-					class="spinner-border float-right"
-					style="width: 2rem; height: 2rem; display: none;" role="status"
-					id="load"></span></a>
+				
 			</form>
+			
 		</div>
 	</section>
 </body>

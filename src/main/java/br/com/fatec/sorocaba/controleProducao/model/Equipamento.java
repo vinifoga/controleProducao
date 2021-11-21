@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,8 +17,7 @@ public class Equipamento {
 	private String descricao;	
 	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime tempoUso;
-	@ManyToOne
-	private ProdutoFaseEquipamento produtoFaseEquipamento;
+	private String unidadeMedida;
 	
 
 	public Long getCod() {
@@ -45,13 +43,11 @@ public class Equipamento {
 	public void setTempoUso(LocalTime tempoUso) {
 		this.tempoUso = tempoUso;
 	}
-	
-	public ProdutoFaseEquipamento getProdutoFaseEquipamento() {
-		return produtoFaseEquipamento;
+	public String getUnidadeMedida() {
+		return unidadeMedida;
 	}
-	
-	public void setProdutoFaseEquipamento(ProdutoFaseEquipamento produtoFaseEquipamento) {
-		this.produtoFaseEquipamento = produtoFaseEquipamento;
+	public void setUnidadeMedida(String unidadeMedida) {
+		this.unidadeMedida = unidadeMedida;
 	}
 	
 }

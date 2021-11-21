@@ -1,13 +1,9 @@
 package br.com.fatec.sorocaba.controleProducao.model;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -15,11 +11,8 @@ public class ReqMaoObra {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codReqMO;
-	@OneToOne(mappedBy = "reqMaoObra")
-	private ProdutoOrdem produtoOrdem;
-	@OneToMany(mappedBy = "reqMaoObra", cascade=CascadeType.ALL)
-	private List<MaoObraReq> maoObraReq;
-	
+	@OneToOne
+	private ProdutoOrdem produtoOrdem;	
 	
 	public Long getCodReqMO() {
 		return codReqMO;
@@ -34,13 +27,4 @@ public class ReqMaoObra {
 		this.produtoOrdem = produtoOrdem;
 	}
 	
-	public List<MaoObraReq> getMaoObraReq() {
-		return maoObraReq;
-	}
-	public void setMaoObraReq(List<MaoObraReq> maoObraReq) {
-		this.maoObraReq = maoObraReq;
-	}
-	
-	
-
 }

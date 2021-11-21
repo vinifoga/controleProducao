@@ -18,7 +18,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 public class Ordem {
 
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codOp;
 	@Enumerated(EnumType.STRING)
 	private StatusOp status = StatusOp.EM_PREPARACAO;
@@ -26,56 +27,47 @@ public class Ordem {
 	private LocalDateTime dataInicio;
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime dataFim;
-	@OneToMany(mappedBy = "ordem", cascade=CascadeType.ALL)
-	private List<ProdutoOrdem> produtoOrdem;
 	@ManyToOne
-	private Colaborador colaborador;
-	
+	private Usuario usuario;
+
 	public Long getCodOp() {
 		return codOp;
 	}
-	
+
 	public void setCodOp(Long codOp) {
 		this.codOp = codOp;
 	}
-	
+
 	public StatusOp getStatus() {
 		return status;
 	}
-	
+
 	public void setStatus(StatusOp status) {
 		this.status = status;
 	}
-	
+
 	public LocalDateTime getDataInicio() {
 		return dataInicio;
 	}
-	
+
 	public void setDataInicio(LocalDateTime dataInicio) {
 		this.dataInicio = dataInicio;
 	}
-	
+
 	public LocalDateTime getDataFim() {
 		return dataFim;
 	}
-	
+
 	public void setDataFim(LocalDateTime dataFim) {
 		this.dataFim = dataFim;
 	}
-	
-	public List<ProdutoOrdem> getProdutoOrdem() {
-		return produtoOrdem;
-	}
-	public void setProdutoOrdem(List<ProdutoOrdem> produtoOrdem) {
-		this.produtoOrdem = produtoOrdem;
+
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public Colaborador getColaborador() {
-		return colaborador;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
-	
-	public void setColaborador(Colaborador colaborador) {
-		this.colaborador = colaborador;
-	}
-	
+
 }

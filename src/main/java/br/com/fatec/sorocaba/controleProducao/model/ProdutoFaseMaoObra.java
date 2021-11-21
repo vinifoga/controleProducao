@@ -1,14 +1,12 @@
 package br.com.fatec.sorocaba.controleProducao.model;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class ProdutoFaseMaoObra {
@@ -18,10 +16,10 @@ public class ProdutoFaseMaoObra {
 	private Integer qtdeMO;
 	@ManyToOne
 	private ProdutoFase produtoFase;
-	@OneToMany(mappedBy="produtoFaseMaoObra", cascade=CascadeType.ALL)
-	private List<MaoObra> maoObra;
-	@OneToMany(mappedBy="produtoFaseMaoObra", cascade=CascadeType.ALL)
-	private List<MaoObraReq> maoObraReq;
+	@OneToOne
+	private MaoObra maoObra;
+	@OneToOne(mappedBy="produtoFaseMaoObra", cascade=CascadeType.ALL)
+	private MaoObraReq maoObraReq;
 	
 	public Long getCodProdFaseMaoObra() {
 		return codProdFaseMaoObra;
@@ -42,17 +40,18 @@ public class ProdutoFaseMaoObra {
 		this.produtoFase = produtoFase;
 	}
 	
-	public List<MaoObra> getMaoObra() {
+	public MaoObra getMaoObra() {
 		return maoObra;
 	}
-	public void setMaoObra(List<MaoObra> maoObra) {
+	public void setMaoObra(MaoObra maoObra) {
 		this.maoObra = maoObra;
 	}
 	
-	public List<MaoObraReq> getMaoObraReq() {
+	public MaoObraReq getMaoObraReq() {
 		return maoObraReq;
 	}
-	public void setMaoObraReq(List<MaoObraReq> maoObraReq) {
+	
+	public void setMaoObraReq(MaoObraReq maoObraReq) {
 		this.maoObraReq = maoObraReq;
 	}
 	

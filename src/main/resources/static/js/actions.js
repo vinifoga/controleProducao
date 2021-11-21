@@ -58,3 +58,26 @@ function addMP(numFase){
 function buscaMatricula(matricula){
 	window.location.href = `usuario/addUsuario/${matricula}`;
 }
+
+function produtoFase(){
+	var idProduto = document.getElementById('produto').value;
+	window.location.href = `fases/produto/${idProduto}`;
+}
+
+function addRecurso(codProduto){
+	var recurso = document.getElementById('recurso').value;
+	window.location.href = `fases/addRecurso/${codProduto}/${recurso}`;
+}
+
+function addMP(codFaseProd){
+	window.location.href = `fases/addMP/${codFaseProd}`;
+}
+
+function addMO(codFaseProd){
+	window.location.href = `fases/addMO/${codFaseProd}`;
+}
+
+function addEQ(codFaseProd){
+	window.location.href = `fases/addEQ/${codFaseProd}`;
+}
+

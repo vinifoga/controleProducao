@@ -11,10 +11,17 @@
 			<h4 class="mb-3" th:text="#{mao-de-obra}">Mao de Obra</h4>
 			<form action="/mao-de-obra" th:action="@{/mao-de-obra}" method="post">
 				<div class="row">
-					<div class="mb-3 col-md-6">
+					<div class="mb-3 col-md-12">
 						<label for="descricao" th:text="#{descricao}">Descrição</label> <input
 							type="text" class="form-control" id="descricao" name="descricao" required>
-					</div>				
+					</div>	
+					</div>
+					<div class="row">	
+					<div class="mb-3 col-md-12">
+						<label for="unidadeMedida" th:text="#{unidadeMedida}">Unidade Medida</label> <input
+							type="text" class="form-control" id="unidadeMedida" name="unidadeMedida" required>
+					</div>	
+					
 							
 				</div>
 			
