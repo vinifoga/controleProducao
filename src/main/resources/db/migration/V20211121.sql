@@ -1,0 +1,214 @@
+-- drop database controle_producao;
+-- create database controle_producao;
+-- use controle_producao;
+-- show tables;
+-- select * from cargo;
+insert into cargo (descricao) values ('Líder');
+insert into cargo (descricao) values ('Operador');
+-- select * from colaborador;
+insert into colaborador (nome, status, cargo_id) values ('Vinicius Fernandes Fogaca', 'ATIVO', 1); -- matricula 1
+insert into colaborador (nome, status, cargo_id) values ('Guilherme Yudi Otsu', 'ATIVO', 2); -- matricula 2
+insert into colaborador (nome, status, cargo_id) values ('Evelyn Fernandes Martins', 'ATIVO', 1); -- matricula 3
+insert into colaborador (nome, status, cargo_id) values ('Lucas Antonio Carlos Machado', 'ATIVO', 2); -- matricula 4
+insert into colaborador (nome, status, cargo_id) values ('Matheus Aparecido Ramalho', 'ATIVO', 2); -- matricula 5
+insert into colaborador (nome, status, cargo_id) values ('Yohann Gabriel Oliani Freddi', 'ATIVO', 1); -- matricula 6
+insert into role(nome_role) values ('ROLE_ADMIN');
+insert into role(nome_role) values ('ROLE_LIDER');
+insert into role(nome_role) values ('ROLE_OPERADOR');
+-- select * from usuario;
+-- select * from role;
+-- select * from usuarios_roles;
+-- select u.nome, r.nome_role from usuario u inner join usuarios_roles ur on u.id = ur.usuario_id inner join role r on ur.role_id = r.nome_role;
+insert into usuario (ativo, email, nome, senha) values ('T', 'admin', 'admin', '$2a$10$gKvwwci.w5tgdium6L2kOOENyKzKq3WpSe25mi70JtzFWaE4dhFy.'); -- senha admin
+insert into usuarios_roles(usuario_id, role_id) values (1, 'ROLE_ADMIN');
+insert into usuario (ativo, email, nome, senha, colaborador_matricula) values ('T', 'vinicius.fogaca@denisico.com.br', 'Vinicius Fernandes Fogaca', '$2a$10$wi4lnEvQiU99nS1t5kfdZOgAXftJXbMaeHv0YlSJBZGqv7da0ijHS', 1); -- Vinicius@2021
+insert into usuarios_roles(usuario_id, role_id) values (2, 'ROLE_LIDER');
+insert into usuario (ativo, email, nome, senha, colaborador_matricula) values ('T', 'guilherme.otsu@denisico.com.br', 'Guilherme Yudi Otsu', '$2a$10$JDFAydnqda2nXXV7lH.AnOziwhDRkt3oOsYbWmEzyClPxnRnqRleK', 2); -- Guilherme@2021
+insert into usuarios_roles(usuario_id, role_id) values (3, 'ROLE_OPERADOR');
+insert into usuario (ativo, email, nome, senha, colaborador_matricula) values ('T', 'evelyn.martins@denisico.com.br', 'Evelyn Fernandes Martins', '$2a$10$REZB47ingMKaxYnV78Q6KuMJY/8le/LjCMY4nfbRXWqFBPjpszV4G', 3); -- Evelyn@2021
+insert into usuarios_roles(usuario_id, role_id) values (4, 'ROLE_LIDER');
+insert into usuario (ativo, email, nome, senha, colaborador_matricula) values ('T', 'lucas.machado@denisico.com.br', 'Lucas Antonio Carlos Machado', '$2a$10$QKwiWsWdLYbVhJHbGkzQvuqdoeKS6XNZEBE3/AcqZJugdKwzDS3PC', 4); -- Lucas@2021
+insert into usuarios_roles(usuario_id, role_id) values (5, 'ROLE_OPERADOR');
+insert into usuario (ativo, email, nome, senha, colaborador_matricula) values ('T', 'matheus.ramalho@denisico.com.br', 'Matheus Aparecido Ramalho', '$2a$10$MJLbJwf3aRrGk7vP5l2cmOeW9rjwtWFPjADqwmqKllOk1xg5CHlRa', 5); -- Matheus@2021
+insert into usuarios_roles(usuario_id, role_id) values (6, 'ROLE_OPERADOR');
+insert into usuario (ativo, email, nome, senha, colaborador_matricula) values ('T', 'yohann.freddi@denisico.com.br', 'Yohan Gabriel Oliani Freddi', '$2a$10$TYU/zozhgLH2obKWP3Am9.oFURK.VXKb2gYnxt2yob3L09b7vz5dK', 6); -- Yohann@2021
+insert into usuarios_roles(usuario_id, role_id) values (7, 'ROLE_LIDER');
+-- select * from equipamento;
+insert into equipamento (descricao, tempo_uso) values ('Alimentador Primário', '00:30') ;
+insert into equipamento (descricao, tempo_uso) values ('Lavador Primário', '01:30') ;
+insert into equipamento (descricao, tempo_uso) values ('Descascador de batatas', '00:30') ;
+insert into equipamento (descricao, tempo_uso) values ('Esteira de Seleção', '08:30') ;
+insert into equipamento (descricao, tempo_uso) values ('Esteira "Z"', '08:30') ;
+insert into equipamento (descricao, tempo_uso) values ('Transportador Helicoidal', '08:30') ;
+insert into equipamento (descricao, tempo_uso) values ('Fatiador 4 Facas', '02:30') ;
+insert into equipamento (descricao, tempo_uso) values ('Lavador contínuo de fatias', '00:30') ;
+insert into equipamento (descricao, tempo_uso) values ('Esteira de Secagem', '00:30') ;
+insert into equipamento (descricao, tempo_uso) values ('Tanque de Gordura', '00:30') ;
+insert into equipamento (descricao, tempo_uso) values ('Fritador Contínuo', '00:30') ;
+insert into equipamento (descricao, tempo_uso) values ('Recirculador e Filtro', '06:30') ;
+insert into equipamento (descricao, tempo_uso) values ('Resfriador Contínuo', '06:30') ;
+insert into equipamento (descricao, tempo_uso) values ('Calha Vibratória', '01:30') ;
+insert into equipamento (descricao, tempo_uso) values ('Cilindro Aromatizador', '00:30') ;
+insert into equipamento (descricao, tempo_uso) values ('Esteira de Transporte', '08:30') ;
+insert into equipamento (descricao, tempo_uso) values ('Bandeja Giratória', '08:30') ;
+insert into equipamento (descricao, tempo_uso) values ('Mesa de Apoio', '12:00') ;
+-- select * from fase;
+insert into fase (descricao) values ('Lavagem');
+insert into fase (descricao) values ('Descascamento');
+insert into fase (descricao) values ('Seleção');
+insert into fase (descricao) values ('Fatiamento');
+insert into fase (descricao) values ('Lavagem');
+insert into fase (descricao) values ('Secagem Parcial');
+insert into fase (descricao) values ('Fritura');
+insert into fase (descricao) values ('Resfriamento');
+insert into fase (descricao) values ('Tempero');
+insert into fase (descricao) values ('Separação');
+insert into fase (descricao) values ('Empacotamento');
+insert into fase (descricao) values ('Estocagem');
+-- select * from mao_obra;
+insert into mao_obra (descricao, unidade_medida) values ('Operador', 'Unidade');
+-- select * from mat_prima;
+insert into mat_prima (descricao, unidade_medida) values ('Batata in Natura', 'Quilos');
+insert into mat_prima (descricao, unidade_medida) values ('Óleo Vegetal', 'Litros');
+insert into mat_prima (descricao, unidade_medida) values ('Sal', 'Quilos');
+insert into mat_prima (descricao, unidade_medida) values ('Especiarias', 'Quilos');
+insert into mat_prima (descricao, unidade_medida) values ('Embalagem', 'Metros');
+insert into mat_prima (descricao, unidade_medida) values ('Caixa', 'Quilos');
+-- select * from produto;
+insert into produto (corte, desc_produto, embalagem, tempero) values ('LISA', 'Batata Chips 17 gramas Tradicional', 'G17', 'TRADICIONAL');
+insert into produto (corte, desc_produto, embalagem, tempero) values ('ONDULADA', 'Batata Chips 17 gramas Frango Grelhado', 'G17', 'FRANGO_GRELHADO');
+insert into produto (corte, desc_produto, embalagem, tempero) values ('LISA', 'Batata Chips 17 gramas Mostarda', 'G17', 'MOSTARDA');
+insert into produto (corte, desc_produto, embalagem, tempero) values ('ONDULADA', 'Batata Chips 22 gramas Tradicional', 'G22', 'TRADICIONAL');
+insert into produto (corte, desc_produto, embalagem, tempero) values ('LISA', 'Batata Chips 22 gramas Churrasco', 'G22', 'CHURRASCO');
+insert into produto (corte, desc_produto, embalagem, tempero) values ('ONDULADA', 'Batata Chips 22 gramas Cebola e Salsa', 'G22', 'CEBOLA_E_SALSA');
+insert into produto (corte, desc_produto, embalagem, tempero) values ('LISA', 'Batata Chips 30 gramas Costelinha com Limão', 'G30', 'COSTELINHA_COM_LIMAO');
+insert into produto (corte, desc_produto, embalagem, tempero) values ('ONDULADA', 'Batata Chips 40 gramas Pimenta Mexicana', 'G40', 'PIMENTA_MEXICANA');
+insert into produto (corte, desc_produto, embalagem, tempero) values ('LISA', 'Batata Chips 40 gramas Frango Grelhado', 'G40', 'FRANGO_GRELHADO');
+insert into produto (corte, desc_produto, embalagem, tempero) values ('ONDULADA', 'Batata Chips 57 gramas Mostarda', 'G57', 'MOSTARDA');
+insert into produto (corte, desc_produto, embalagem, tempero) values ('LISA', 'Batata Chips 57 gramas Tradicional', 'G57', 'TRADICIONAL');
+insert into produto (corte, desc_produto, embalagem, tempero) values ('ONDULADA', 'Batata Chips 60 gramas Churrasco', 'G60', 'CHURRASCO');
+insert into produto (corte, desc_produto, embalagem, tempero) values ('LISA', 'Batata Chips 60 gramas Cebola e Salsa', 'G60', 'CEBOLA_E_SALSA');
+insert into produto (corte, desc_produto, embalagem, tempero) values ('ONDULADA', 'Batata Chips 60 gramas Costelinha com Limão', 'G60', 'COSTELINHA_COM_LIMAO');
+insert into produto (corte, desc_produto, embalagem, tempero) values ('LISA', 'Batata Chips 92 gramas Pimenta Mexicana', 'G92', 'PIMENTA_MEXICANA');
+insert into produto (corte, desc_produto, embalagem, tempero) values ('ONDULADA', 'Batata Chips 92 gramas Frango Grelhado', 'G92', 'FRANGO_GRELHADO');
+insert into produto (corte, desc_produto, embalagem, tempero) values ('LISA', 'Batata Chips 92 gramas Mostarda', 'G92', 'MOSTARDA');
+insert into produto (corte, desc_produto, embalagem, tempero) values ('ONDULADA', 'Batata Chips 100 gramas Tradicional', 'G100', 'TRADICIONAL');
+insert into produto (corte, desc_produto, embalagem, tempero) values ('LISA', 'Batata Chips 167 gramas Cebola e Salsa', 'G167', 'CEBOLA_E_SALSA');
+insert into produto (corte, desc_produto, embalagem, tempero) values ('ONDULADA', 'Batata Chips 300 gramas Tradicional', 'G300', 'TRADICIONAL');
+-- select * from produto_fase_mao_obra;
+-- select * from fase;
+-- select * from produto;
+-- select * from produto_fase;
+-- select f.descricao, p.desc_produto from fase f inner join produto_fase pf on f.num_fase = pf.fase_num_fase inner join produto p on p.cod_produto = pf.produto_cod_produto;
+insert into produto_fase (fase_num_fase, produto_cod_produto) value (1,2);
+insert into produto_fase (fase_num_fase, produto_cod_produto) value (2,2);
+insert into produto_fase (fase_num_fase, produto_cod_produto) value (3,2);
+insert into produto_fase (fase_num_fase, produto_cod_produto) value (4,2);
+insert into produto_fase (fase_num_fase, produto_cod_produto) value (5,2);
+insert into produto_fase (fase_num_fase, produto_cod_produto) value (6,2);
+insert into produto_fase (fase_num_fase, produto_cod_produto) value (7,2);
+insert into produto_fase (fase_num_fase, produto_cod_produto) value (8,2);
+insert into produto_fase (fase_num_fase, produto_cod_produto) value (9,2);
+insert into produto_fase (fase_num_fase, produto_cod_produto) value (10,2);
+insert into produto_fase (fase_num_fase, produto_cod_produto) value (11,2);
+insert into produto_fase (fase_num_fase, produto_cod_produto) value (12,2);
+-- select * from produto_fase;
+-- select * from mao_obra;
+-- select * from produto_fase_mao_obra;
+-- select f.descricao, mo.descricao, p.desc_produto, pfmo.qtdemo Quantidade from produto_fase_mao_obra pfmo inner join mao_obra mo on pfmo.mao_obra_cod = mo.cod 
+-- inner join produto_fase pf on pf.cod_produto_fase = pfmo.produto_fase_cod_produto_fase 
+-- inner join fase f on f.num_fase = pf.fase_num_fase inner join produto p on p.cod_produto = pf.produto_cod_produto;
+insert into produto_fase_mao_obra (qtdemo, mao_obra_cod, produto_fase_cod_produto_fase) values (1,1,1);
+insert into produto_fase_mao_obra (qtdemo, mao_obra_cod, produto_fase_cod_produto_fase) values (1,1,2);
+insert into produto_fase_mao_obra (qtdemo, mao_obra_cod, produto_fase_cod_produto_fase) values (1,1,3);
+insert into produto_fase_mao_obra (qtdemo, mao_obra_cod, produto_fase_cod_produto_fase) values (1,1,4);
+insert into produto_fase_mao_obra (qtdemo, mao_obra_cod, produto_fase_cod_produto_fase) values (1,1,5);
+insert into produto_fase_mao_obra (qtdemo, mao_obra_cod, produto_fase_cod_produto_fase) values (1,1,6);
+insert into produto_fase_mao_obra (qtdemo, mao_obra_cod, produto_fase_cod_produto_fase) values (1,1,7);
+insert into produto_fase_mao_obra (qtdemo, mao_obra_cod, produto_fase_cod_produto_fase) values (1,1,8);
+insert into produto_fase_mao_obra (qtdemo, mao_obra_cod, produto_fase_cod_produto_fase) values (1,1,9);
+insert into produto_fase_mao_obra (qtdemo, mao_obra_cod, produto_fase_cod_produto_fase) values (3,1,10);
+insert into produto_fase_mao_obra (qtdemo, mao_obra_cod, produto_fase_cod_produto_fase) values (3,1,11);
+insert into produto_fase_mao_obra (qtdemo, mao_obra_cod, produto_fase_cod_produto_fase) values (3,1,12);
+-- select * from produto_fase;
+-- select * from mat_prima;
+-- select * from produto_fase_mat;
+-- select f.descricao, mp.descricao, p.desc_produto, pfmp.qtdemp Quantidade from produto_fase_mat pfmp inner join mat_prima mp on pfmp.mat_prima_cod = mp.cod 
+-- inner join produto_fase pf on pf.cod_produto_fase = pfmp.produto_fase_cod_produto_fase 
+-- inner join fase f on f.num_fase = pf.fase_num_fase inner join produto p on p.cod_produto = pf.produto_cod_produto;
+insert into produto_fase_mat(qtdemp, mat_prima_cod, produto_fase_cod_produto_fase) values (5,1,1);
+insert into produto_fase_mat(qtdemp, mat_prima_cod, produto_fase_cod_produto_fase) values (0.5,2,7);
+insert into produto_fase_mat(qtdemp, mat_prima_cod, produto_fase_cod_produto_fase) values (0.25,3,9);
+insert into produto_fase_mat(qtdemp, mat_prima_cod, produto_fase_cod_produto_fase) values (0.75,4,9);
+insert into produto_fase_mat(qtdemp, mat_prima_cod, produto_fase_cod_produto_fase) values (1,5,11);
+insert into produto_fase_mat(qtdemp, mat_prima_cod, produto_fase_cod_produto_fase) values (1,6,12);
+-- select * from produto_fase;
+-- select * from equipamento;
+-- select * from produto_fase_equipamento;
+-- select f.descricao, eq.descricao, p.desc_produto, pfeq.qtde_eq Quantidade from produto_fase_equipamento pfeq inner join equipamento eq on pfeq.equipamento_cod = eq.cod 
+-- inner join produto_fase pf on pf.cod_produto_fase = pfeq.produto_fase_cod_produto_fase 
+-- inner join fase f on f.num_fase = pf.fase_num_fase inner join produto p on p.cod_produto = pf.produto_cod_produto;
+insert into produto_fase_equipamento(qtde_eq, equipamento_cod, produto_fase_cod_produto_fase) values (1,1,1);
+insert into produto_fase_equipamento(qtde_eq, equipamento_cod, produto_fase_cod_produto_fase) values (1,2,1);
+insert into produto_fase_equipamento(qtde_eq, equipamento_cod, produto_fase_cod_produto_fase) values (1,3,2);
+insert into produto_fase_equipamento(qtde_eq, equipamento_cod, produto_fase_cod_produto_fase) values (1,4,3);
+insert into produto_fase_equipamento(qtde_eq, equipamento_cod, produto_fase_cod_produto_fase) values (1,5,3);
+insert into produto_fase_equipamento(qtde_eq, equipamento_cod, produto_fase_cod_produto_fase) values (1,6,3);
+insert into produto_fase_equipamento(qtde_eq, equipamento_cod, produto_fase_cod_produto_fase) values (1,7,4);
+insert into produto_fase_equipamento(qtde_eq, equipamento_cod, produto_fase_cod_produto_fase) values (1,8,5);
+insert into produto_fase_equipamento(qtde_eq, equipamento_cod, produto_fase_cod_produto_fase) values (1,9,6);
+insert into produto_fase_equipamento(qtde_eq, equipamento_cod, produto_fase_cod_produto_fase) values (1,10,7);
+insert into produto_fase_equipamento(qtde_eq, equipamento_cod, produto_fase_cod_produto_fase) values (1,11,7);
+insert into produto_fase_equipamento(qtde_eq, equipamento_cod, produto_fase_cod_produto_fase) values (1,12,7);
+insert into produto_fase_equipamento(qtde_eq, equipamento_cod, produto_fase_cod_produto_fase) values (1,13,8);
+insert into produto_fase_equipamento(qtde_eq, equipamento_cod, produto_fase_cod_produto_fase) values (1,14,9);
+insert into produto_fase_equipamento(qtde_eq, equipamento_cod, produto_fase_cod_produto_fase) values (1,15,9);
+insert into produto_fase_equipamento(qtde_eq, equipamento_cod, produto_fase_cod_produto_fase) values (1,16,10);
+insert into produto_fase_equipamento(qtde_eq, equipamento_cod, produto_fase_cod_produto_fase) values (1,17,10);
+insert into produto_fase_equipamento(qtde_eq, equipamento_cod, produto_fase_cod_produto_fase) values (1,18,11);
+insert into produto_fase_equipamento(qtde_eq, equipamento_cod, produto_fase_cod_produto_fase) values (1,16,11);
+-- select * from ordem;
+insert into ordem (data_inicio, data_fim, status, usuario_id) values ('2021-11-20 07:00:00.000000','2021-11-20 07:30:00.000000','EM_PREPARACAO', 2);
+insert into ordem (data_inicio, data_fim, status, usuario_id) values ('2021-11-20 07:31:00.000000','2021-11-20 08:01:00.000000','LIBERADO', 4);
+insert into ordem (data_inicio, data_fim, status, usuario_id) values ('2021-11-20 08:02:00.000000','2021-11-20 08:32:00.000000','INICIADO', 7);
+insert into ordem (data_inicio, data_fim, status, usuario_id) values ('2021-11-20 09:02:00.000000','2021-11-20 09:32:00.000000','CONCLUIDO', 2);
+insert into ordem (data_inicio, data_fim, status, usuario_id) values ('2021-11-20 10:02:00.000000','2021-11-20 10:32:00.000000','FECHADO', 4);
+insert into ordem (data_inicio, data_fim, status, usuario_id) values ('2021-11-20 11:02:00.000000','2021-11-20 11:32:00.000000','CANCELADO', 7);
+insert into ordem (data_inicio, data_fim, status, usuario_id) values ('2021-11-20 12:02:00.000000','2021-11-20 12:32:00.000000','CONCLUIDO', 2);
+insert into ordem (data_inicio, data_fim, status, usuario_id) values ('2021-11-20 13:02:00.000000','2021-11-20 13:32:00.000000','CONCLUIDO', 4);
+insert into ordem (data_inicio, data_fim, status, usuario_id) values ('2021-11-20 14:02:00.000000','2021-11-20 14:32:00.000000','CONCLUIDO', 7);
+insert into ordem (data_inicio, data_fim, status, usuario_id) values ('2021-11-20 15:02:00.000000','2021-11-20 15:32:00.000000','CONCLUIDO', 2);
+insert into ordem (data_inicio, data_fim, status, usuario_id) values ('2021-11-20 16:02:00.000000','2021-11-20 16:32:00.000000','LIBERADO', 4);
+insert into ordem (data_inicio, data_fim, status, usuario_id) values ('2021-11-20 17:02:00.000000','2021-11-20 17:32:00.000000','LIBERADO', 7);
+insert into ordem (data_inicio, data_fim, status, usuario_id) values ('2021-11-20 18:02:00.000000','2021-11-20 18:32:00.000000','FECHADO', 2);
+insert into ordem (data_inicio, data_fim, status, usuario_id) values ('2021-11-20 19:02:00.000000','2021-11-20 19:32:00.000000','FECHADO', 4);
+insert into ordem (data_inicio, data_fim, status, usuario_id) values ('2021-11-20 20:02:00.000000','2021-11-20 20:32:00.000000','FECHADO', 7);
+insert into ordem (data_inicio, data_fim, status, usuario_id) values ('2021-11-20 21:02:00.000000','2021-11-20 21:32:00.000000','CANCELADO', 2);
+insert into ordem (data_inicio, data_fim, status, usuario_id) values ('2021-11-20 22:02:00.000000','2021-11-20 22:32:00.000000','CANCELADO', 4);
+insert into ordem (data_inicio, data_fim, status, usuario_id) values ('2021-11-20 23:02:00.000000','2021-11-20 23:32:00.000000','CANCELADO', 7);
+insert into ordem (data_inicio, data_fim, status, usuario_id) values ('2021-11-20 00:02:00.000000','2021-11-20 00:32:00.000000','CONCLUIDO', 2);
+insert into ordem (data_inicio, data_fim, status, usuario_id) values ('2021-11-20 01:02:00.000000','2021-11-20 01:32:00.000000','CONCLUIDO', 4);
+-- select * from produto_ordem po inner join ordem o on po.ordem_cod_op = o.cod_op;
+-- select * from produto_ordem;
+-- select * from ordem;
+insert into produto_ordem (qtd_prod, ordem_cod_op, produto_cod_produto) values (100, 1, 1);
+insert into produto_ordem (qtd_prod, ordem_cod_op, produto_cod_produto) values (100, 2, 1);
+insert into produto_ordem (qtd_prod, ordem_cod_op, produto_cod_produto) values (100, 3, 1);
+insert into produto_ordem (qtd_prod, ordem_cod_op, produto_cod_produto) values (150, 4, 1);
+insert into produto_ordem (qtd_prod, ordem_cod_op, produto_cod_produto) values (200, 5, 1);
+insert into produto_ordem (qtd_prod, ordem_cod_op, produto_cod_produto) values (300, 6, 1);
+insert into produto_ordem (qtd_prod, ordem_cod_op, produto_cod_produto) values (400, 7, 1);
+insert into produto_ordem (qtd_prod, ordem_cod_op, produto_cod_produto) values (500, 8, 1);
+insert into produto_ordem (qtd_prod, ordem_cod_op, produto_cod_produto) values (125, 9, 1);
+insert into produto_ordem (qtd_prod, ordem_cod_op, produto_cod_produto) values (125, 10, 1);
+insert into produto_ordem (qtd_prod, ordem_cod_op, produto_cod_produto) values (254, 11, 1);
+insert into produto_ordem (qtd_prod, ordem_cod_op, produto_cod_produto) values (358, 12, 1);
+insert into produto_ordem (qtd_prod, ordem_cod_op, produto_cod_produto) values (188, 13, 1);
+insert into produto_ordem (qtd_prod, ordem_cod_op, produto_cod_produto) values (254, 14, 1);
+insert into produto_ordem (qtd_prod, ordem_cod_op, produto_cod_produto) values (365, 15, 1);
+insert into produto_ordem (qtd_prod, ordem_cod_op, produto_cod_produto) values (215, 16, 1);
+insert into produto_ordem (qtd_prod, ordem_cod_op, produto_cod_produto) values (321, 17, 1);
+insert into produto_ordem (qtd_prod, ordem_cod_op, produto_cod_produto) values (185, 18, 1);
+insert into produto_ordem (qtd_prod, ordem_cod_op, produto_cod_produto) values (122, 19, 1);
+insert into produto_ordem (qtd_prod, ordem_cod_op, produto_cod_produto) values (133, 20, 1);
+
