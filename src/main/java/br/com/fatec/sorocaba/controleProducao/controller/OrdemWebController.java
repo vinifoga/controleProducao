@@ -5,6 +5,9 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,15 +37,23 @@ public class OrdemWebController {
 	
 	@Autowired
 	private UsuarioService usuarioService;
+	
 
 	@GetMapping("/ordem")
 	public ModelAndView novo() {
 		ModelAndView modelAndView = new ModelAndView();
 		ProdutoOrdem pf = new ProdutoOrdem();
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails usuario;
+		usuario = ((UserDetails)principal);		
+		modelAndView.addObject("usuario", usuario.getUsername());
+		Usuario usuarioAtual = usuarioService.findByEmail(usuario.getUsername());
+		
 		pf.setOrdem(new Ordem());
 		modelAndView.addObject("produtoOrdem", pf);		
 		modelAndView.addObject("produtos", produtoService.list());
-		modelAndView.addObject("usuarios", usuarioService.list());
+		modelAndView.addObject("usuario", usuarioAtual);
 		modelAndView.setViewName("ordem/index");
 		return modelAndView;
 	}

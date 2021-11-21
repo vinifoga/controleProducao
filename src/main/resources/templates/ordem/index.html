@@ -59,12 +59,9 @@
 				
 				<div class="row">
 					<div class="mb-3 col-md-12">
-						<label for="usuario" th:text="#{produto}">Produto
-						</label>
-						<select class="form-control" id="usuario" name="usuario" >
-							<option th:each="user : ${usuarios}" th:value="${user.id}" th:text="${user.nome}"></option>
-						</select>
-					</div>		
+						<label for="usuario" th:text="#{usuario}">Usuario</label> <input
+							type="text" class="form-control" id="usuario" name="usuario" th:value="${usuario.nome}?:''" readonly>
+					</div>	
 					
 					
 							

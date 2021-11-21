@@ -33,4 +33,8 @@ public class UsuarioService {
 		return usuarioRepository.findById(id).get();
 	}
 	
+	public Usuario findByEmail(String email) {
+		return usuarioRepository.findByEmail(email);
+	}
+	
 }
