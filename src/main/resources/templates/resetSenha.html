@@ -288,18 +288,13 @@ input[type=text]:placeholder, input[type=password]:placeholder {
     <div class="fadeIn first">
       <img src="/img/denisico.png" id="icon" alt="User Icon" />
     </div>
-
+	<h2>Recuperar Senha</h2>
     <!-- Login Form -->
-    <form name="f" th:action="@{/login}" method="post">
-      <input type="text" id="username" class="fadeIn second" name="username" placeholder="Email">
-      <input type="password" id="password" class="fadeIn third" name="password" placeholder="Senha">
-      <input type="submit" class="fadeIn fourth" value="Entrar">
+    <form action="/reset-senha" th:action="@{/reset-senha}" method="post" th:object="${usuario}">
+      <input type="text" id="email" class="fadeIn second" name="email" placeholder="Email">
+      <input type="submit" class="fadeIn fourth" value="Recuperar Senha">
     </form>
-
-    <!-- Remind Password -->
-    <div id="formFooter">
-      <a class="underlineHover" href="/reset-senha">Esqueceu a Senha?</a>
-    </div>
+   
 
   </div>
 </div>

@@ -58,9 +58,13 @@
 				</div>		
 				
 				<div class="row">
-					<div class="mb-3 col-md-12">
-						<label for="usuario" th:text="#{usuario}">Usuario</label> <input
-							type="text" class="form-control" id="usuario" name="usuario" th:value="${usuario.nome}?:''" readonly>
+					<div class="mb-3 col-md-2">
+						<label for="usuario" th:text="#{matricula}">Matricula</label> <input
+							type="text" class="form-control" id="usuario" name="usuario" th:value="${usuario.id}?:''"  readonly>
+					</div>	
+					<div class="mb-3 col-md-10">
+						<label for="nomeUsuario" th:text="#{usuario}">Usuario</label> <input
+							type="text" class="form-control" id="nomeUsuario" name="nomeUsuario" th:value="${usuario.nome}?:''" readonly>
 					</div>	
 					
 					

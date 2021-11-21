@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{default :: layout(~{::title}, ~{::section})}">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Controle de Produção</title>
+</head>
+<body>
+	<section th:object="${usuario}">
+		<div class="row justify-content-md-center">
+			<figure>
+				<img src="/img/denisico.png">
+			</figure>
+		</div>
+
+		<div class="card text-center">
+			<div class="card">
+				<div class="card-header">Instruções de Recuperação</div>
+				<div class="card-body">
+					<i class="fas fa-tools"></i>
+					<p class="card-text">Enviamos Instruções de Recuperação de Senha para seu Email</p>
+					<p th:text="${usuario}"></p>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+
+</body>
+</html>

@@ -59,17 +59,45 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Charts -->
-			<li class="nav-item"><a class="nav-link" href="/usuario"> <i
+						
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseUsuario"
+				aria-expanded="true" aria-controls="collapseUsuario"> <i
 					class="far fa-address-book"></i> <span>Usuários</span>
-			</a></li>
+
+			</a>
+				<div id="collapseUsuario" class="collapse"
+					aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" href="/usuario"><span
+							th:text="#{novoUsuario}">Novo Usuário</span> </a> <a
+							class="collapse-item" href="/lista-usuario"><span
+							th:text="#{listaUsuario}">Lista Usuários</span> </a>
+
+					</div>
+				</div></li>
+			
 
 			<li class="nav-item"><a class="nav-link" href="/produto"> <i
 					class="fas fa-cube"></i> <span>Produtos</span>
 			</a></li>
 
-			<li class="nav-item"><a class="nav-link" href="/ordem"> <i
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseOrdem"
+				aria-expanded="true" aria-controls="collapseOrdem"> <i
 					class="fas fa-file-alt"></i> <span>Ordem</span>
-			</a></li>
+
+			</a>
+				<div id="collapseOrdem" class="collapse"
+					aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" href="/ordem"><span
+							th:text="#{novaOrdem}">Nova OP</span> </a> <a
+							class="collapse-item" href="/lista-ordem"><span
+							th:text="#{listaOrdem}">Lista OP</span> </a>
+
+					</div>
+				</div></li>
 
 
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
