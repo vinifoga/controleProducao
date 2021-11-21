@@ -11,7 +11,6 @@ public class ControleProducaoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ControleProducaoApplication.class, args);
-		System.out.println(new BCryptPasswordEncoder().encode("Yohann@2021"));
 	}
 	
 	
