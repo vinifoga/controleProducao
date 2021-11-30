@@ -13,10 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import br.com.fatec.sorocaba.controleProducao.model.Cargo;
 import br.com.fatec.sorocaba.controleProducao.service.CargoService;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@DataJpaTest
 @ActiveProfiles("test")
+@RunWith(SpringRunner.class)
 public class CargoTest {
 
 	@Autowired

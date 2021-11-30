@@ -9,11 +9,12 @@
 	<section>
 		<div class="col-md-8 order-md-1">
 			<h4 class="mb-3" th:text="#{produto}">Produto</h4>
-			<form action="/produto" th:action="@{/produto}" method="post">
+			<form action="/produto" th:action="@{/produto}" th:object="${produto}" method="post">
+			<input type="hidden" id="codProduto" name="codProduto"th:value="*{codProduto}">
 				<div class="row">
 					<div class="mb-3 col-md-12">
 						<label for="nome" th:text="#{descProduto}">Descrição</label> <input
-							type="text" class="form-control" id="descProduto" name="descProduto" required>
+							type="text" class="form-control" id="descProduto" name="descProduto" th:value="*{descProduto}" required>
 					</div>					
 				</div>
 				
@@ -21,19 +22,19 @@
 					<div class="mb-3 col-md-4">
 						<label for="corte" th:text="#{corte}">Corte</label>
 						<select class="form-control" id="corte" name="corte" required="required">
-						<option th:each="corte : ${T(br.com.fatec.sorocaba.controleProducao.model.Corte).values()}" th:value="${corte}" th:text="${corte}"></option>
+						<option th:each="corte : ${T(br.com.fatec.sorocaba.controleProducao.model.Corte).values()}" th:value="${corte}" th:selected="(${corte} == *{corte})" th:text="${corte}"></option>
 						</select>
 					</div>
 					<div class="mb-3 col-md-4">
 						<label for="tempero" th:text="#{tempero}">Tempero</label>
 						<select class="form-control" id="tempero" name="tempero" required="required">
-						<option th:each="tempero : ${T(br.com.fatec.sorocaba.controleProducao.model.Tempero).values()}" th:value="${tempero}" th:text="${tempero}"></option>
+						<option th:each="tempero : ${T(br.com.fatec.sorocaba.controleProducao.model.Tempero).values()}" th:value="${tempero}" th:selected="(${tempero} == *{tempero})"  th:text="${tempero}"></option>
 						</select>
 					</div>
 					<div class="mb-3 col-md-4">
 						<label for="embalagem" th:text="#{embalagem}">Embalagem</label>
 						<select class="form-control" id="embalagem" name="embalagem" required="required">
-						<option th:each="embalagem : ${T(br.com.fatec.sorocaba.controleProducao.model.Embalagem).values()}" th:value="${embalagem}" th:text="${embalagem}"></option>
+						<option th:each="embalagem : ${T(br.com.fatec.sorocaba.controleProducao.model.Embalagem).values()}" th:value="${embalagem}" th:selected="(${embalagem} == *{embalagem})" th:text="${embalagem}"></option>
 						</select>
 					</div>
 				</div>				

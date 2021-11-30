@@ -1,6 +1,7 @@
 package br.com.fatec.sorocaba.controleProducao.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,9 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.fatec.sorocaba.controleProducao.model.Colaborador;
-import br.com.fatec.sorocaba.controleProducao.model.Fase;
 import br.com.fatec.sorocaba.controleProducao.model.Usuario;
+import br.com.fatec.sorocaba.controleProducao.service.CargoService;
 import br.com.fatec.sorocaba.controleProducao.service.ColaboradorService;
+import br.com.fatec.sorocaba.controleProducao.service.RoleService;
 import br.com.fatec.sorocaba.controleProducao.service.UsuarioService;
 
 @Controller
@@ -29,6 +31,13 @@ public class UsuarioWebController {
 	
 	@Autowired
 	private ColaboradorService colaboradorService;
+	
+	@Autowired
+	private CargoService cargoService;
+	
+	@Autowired
+	private RoleService roleService;
+	
 
 	@GetMapping("/usuario")
 	public ModelAndView novo() {
@@ -54,6 +63,11 @@ public class UsuarioWebController {
 	@PostMapping("/usuario")
 	public ModelAndView save(@Valid Usuario usuario, BindingResult result, RedirectAttributes attributes) {
 		ModelAndView mv = new ModelAndView("redirect:/lista-usuario");
+		if(colaboradorService.list().stream().filter(c -> c.getMatricula().equals(usuario.getColaborador().getMatricula())).findAny().get().getCargo()==cargoService.findById(1L)) {
+			usuario.setRoles(roleService.list().stream().filter(rl -> rl.getNomeRole().compareTo("ROLE_LIDER")==0).collect(Collectors.toList()));
+		}else if(colaboradorService.list().stream().filter(c -> c.getMatricula().equals(usuario.getColaborador().getMatricula())).findAny().get().getCargo()==cargoService.findById(2L)) {
+			usuario.setRoles(roleService.list().stream().filter(rl -> rl.getNomeRole()=="ROLE_OPERADOR").collect(Collectors.toList()));
+		}
 		
 		try {
 			Colaborador colaborador = colaboradorService.findById(usuario.getColaborador().getMatricula());
@@ -74,4 +88,22 @@ public class UsuarioWebController {
 		return mv;
 	}	
 	
+	@GetMapping("/edita-usuario/{id}")
+	public ModelAndView editaUsuario(@PathVariable("id") Long id, HttpServletRequest request, HttpServletResponse response) {
+		Usuario usuario = usuarioService.findById(id);
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("usuario", usuario);
+		modelAndView.setViewName("usuario/colaborador");
+		return modelAndView;
+	}
+	
+	@GetMapping("/usuario/excluir/{id}")
+	public ModelAndView deletaUsuario(@PathVariable("id") Long id, HttpServletRequest request, HttpServletResponse response) {
+		usuarioService.delete(usuarioService.findById(id));
+		ModelAndView modelAndView = new ModelAndView();
+		List<Usuario> usuarios = usuarioService.list();
+		modelAndView.addObject("usuarios", usuarios);
+		modelAndView.setViewName("redirect:/lista-usuario");
+		return modelAndView;
+	}
 }

@@ -9,13 +9,17 @@
 	<section>
 		<div class="col-md-8 order-md-1">
 			<h4 class="mb-3" th:text="#{fases}">Fases</h4>
-			<form action="/fases" th:action="@{/fases}" th:object="${produtoFase}"
-				method="post">
+			<form action="/fases" th:action="@{/fases}"
+				th:object="${fasesProduto}" method="post">				
+				<input type="hidden" id="fase.numFase" name="fase.numFase" th:value="${fase.numFase}">
+				<input type="hidden" id="produto.codProduto" name="produto.codProduto" th:value="${produto.codProduto}">
+				<input type="hidden" id="fasesProduto.codProdutoFase" name="fasesProduto.codProdutoFase" th:value="${fase.numFase}">
+				
 				<div class="row">
 					<div class="mb-3 col-md-12">
-						<label for="produtoFase.produto.descProduto" th:text="#{descProduto}">Produto
-						</label> <input class="form-control" id="produtoFase.produto.descProduto" name="produtoFase.produto.descProduto"
-							th:value="*{produto.descProduto}" readonly>
+						<label for="produto.descProduto" th:text="#{descProduto}">Produto
+						</label> <input class="form-control" id="descProduto" name="descProduto"
+							th:value="${produto.descProduto}" readonly>
 					</div>
 				</div>
 				<div class="row">
@@ -38,48 +42,103 @@
 					<!-- 							class="fas fa-plus" style="color: white;"></i></button> -->
 
 					<!-- 					</div> -->
-				</div>				
-				<div class="row">
-					<div class="mb-3 col-md-12">
-						<label for="produtoFase.fase.descricao" th:text="#{descProduto}">Produto
-						</label> <input class="form-control" id="produtoFase.fase.descricao" name="produtoFase.fase.descricao"
-							th:value="*{fase.descricao}">
+				</div>
+				<div th:object="${fase}">
+					<div class="row">
+						<div class="mb-3 col-md-12">
+							<label for="descricao" th:text="#{descProduto}">Produto </label>
+							<input class="form-control" id="descricao" name="descricao"
+								th:value="*{descricao}">
+						</div>
 					</div>
 				</div>
-			<button id="salvar" class="btn btn-success btn-lg btn-block"
+
+				<br>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr class="table-primary">
+								<th th:text="#{codigo}">Código</th>
+								<th th:text="#{descricao}">Descrição</th>
+								<th th:text="#{MP}">MP</th>
+								<th th:text="#{recurso}">Recurso</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="faseProd : ${fasesProduto}">
+								<th th:text="${faseProd.codProdutoFase}">Código</th>
+								<td th:text="${faseProd.fase.descricao}">Descricao</td>
+								<td><a
+									th:onclick="|window.location.href='fase/addMP/${faseProd.codProdutoFase}'|"><i
+										style="color: #4E73DF; cursor: pointer" class="fas fa-cubes"></i></a>
+								</td>
+								<td>
+									<div class="table-responsive">
+										<table class="table">
+											<thead>
+												<tr class="table-primary">
+													<th th:text="#{quantidade}">Quantidade</th>
+													<th th:text="#{descricao}">Descrição</th>
+													<th th:text="#{save}">Salvar</th>
+												</tr>
+											</thead>
+
+											<tbody>
+												<tr th:each="rec: ${fasesProduto.produtoFasemat}">
+													<td><input type="text"
+														id="rec.produtoFasemat"
+														name="rec.produtoFasemat"
+														th:value="${rec.qtdeMP}?:''" maxlength="4" size="4"></td>
+													<td><div class="mb-3 col-md-10">
+															<select class="form-control" id="materiais" name="materiais"
+																required="required">
+																<option th:each="mat : ${materias}"
+																	th:value="${mat.cod}" th:text="${mat.descricao}"></option>
+															</select>
+														</div></td>
+													<td>	<button id="salvar" class="btn btn-success btn-lg btn-block"
 					type="submit" th:value="${save}">Salvar</button>
+												</tr>
+											</tbody>
+
+
+											<!-- 										<tbody> -->
+											<!-- 											<tr th:each="rec : ${faseProd.produtoFasemat}"> -->
+											<!-- 											<td th:text="${rec.qtdeMP}">												 -->
+											<!-- 											</td> -->
+											<!-- 											<td th:text="${rec.matPrima.descricao}">												 -->
+											<!-- 											</td> -->
+											<!-- 											<td><i style="color: #4E73DF;" class="fas fa-cubes"></i></td> -->
+
+											<!-- 											<tr th:each="rec : ${faseProd.produtoFaseMaoObra}"> -->
+											<!-- 											<td th:text="${rec.qtdeMO}">												 -->
+											<!-- 											</td> -->
+											<!-- 											<td th:text="${rec.maoObra.descricao}">												 -->
+											<!-- 											</td> -->
+											<!-- 											<td><i style="color: #4E73DF;" class="fas fa-male"></i></td> -->
+
+											<!-- 											<tr th:each="rec : ${faseProd.produtoFaseEquipamento}"> -->
+											<!-- 											<td th:text="${rec.qtdeEq}">												 -->
+											<!-- 											</td> -->
+											<!-- 											<td th:text="${rec.equipamento.descricao}">												 -->
+											<!-- 											</td> -->
+											<!-- 											<td><i style="color: #4E73DF;" class="fas fa-industry"></i></td> -->
+
+
+											<!-- 										</tbody> -->
+										</table>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
 			</form>
-			
-			
-					<br>
-			<div class="table-responsive">
-				<table class="table">
-					<thead>
-						<tr class="table-primary">
-							<th th:text="#{codigo}">Código</th>
-							<th th:text="#{descricao}">Descrição</th>
-							<th th:text="#{MP}">MP</th>
-							<th th:text="#{MO}">MO</th>
-							<th th:text="#{EQ}">EQ</th>
 
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="faseProd : ${fasesProduto}">
-							<th th:text="${faseProd.codProdutoFase}">Código</th>
-							<td th:text="${faseProd.fase.descricao}">Descricao</td>
-							<td><a th:onclick="'addMP('+${faseProd.codProdutoFase}+')'"><i
-									style="color: #4E73DF; cursor: pointer" class="fas fa-cubes"></i></a></td>
-							<td><a th:onclick="'addMO('+${faseProd.codProdutoFase}+')'"><i
-									style="color: #4E73DF; cursor: pointer" class="fas fa-male"></i></a></td>
-							<td><a th:onclick="'addEQ('+${faseProd.codProdutoFase}+')'"><i
-									style="color: #4E73DF; cursor: pointer" class="fas fa-industry"></i></a></td>
-									
-						</tr>
-					</tbody>
-				</table>
-			</div>
+
+
 		</div>
 	</section>
 </body>

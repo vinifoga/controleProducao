@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{default :: layout(~{::title}, ~{::section})}">
+<head>
+<meta charset="utf-8">
+<title th:text="#{colaborador.list}">Colaboradores</title>
+</head>
+<body>
+	<section>
+		<h2 th:text="#{colaborador.list}">Listagem de Colaboradores</h2>
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr  class="table-primary">
+						<th th:text="#{matricula}">Matricula</th>
+						<th th:text="#{nome}">Nome</th>
+						<th th:text="#{cargo}" >Cargo</th>
+						<th th:text="#{status}" >Status</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="colaborador : ${colaboradores}">
+						<th th:text="${colaborador.matricula}">Matricula</th>
+						<td th:text="${colaborador.nome}">Nome</td>
+						<td th:text="${colaborador.cargo.descricao}">Cargo</td>
+						<td th:text="${colaborador.status}">Status</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+	</section>
+</body>
+</html>

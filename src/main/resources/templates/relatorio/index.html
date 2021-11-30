@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{default :: layout(~{::title}, ~{::section})}">
+<head>
+<meta charset="utf-8">
+<title th:text="#{relatorio}">Relatorio</title>
+</head>
+<body>
+	<section>
+		<div class="col-md-8 order-md-1">
+			<h4 class="mb-3" th:text="#{relatorio}">Relatorio</h4>
+			<form action="/relatorio" th:action="@{/relatorio}" method="post">		
+			<div class="row mb-3">
+				<button type="button" class="btn btn btn-outline-success btn-lg btn-block" th:onclick="|window.location.href='/relatorio/produto'|">Ordem de Produção por Produto</button>
+				<button type="button" class="btn btn btn-outline-danger btn-lg btn-block" th:onclick="|window.location.href='/relatorio/status'|">Ordem de Produção por Status</button>
+			</div>						
+				<button id="salvar" class="btn btn-success btn-lg btn-block"
+					type="submit" th:value="${save}">Salvar</button>
+				<a href="/lista-relatorio" th:href="@{/lista-relatorio}"
+					class="btn btn-primary btn-lg btn-block" th:onclick="loading()">Listar<span
+					class="spinner-border float-right"
+					style="width: 2rem; height: 2rem; display: none;" role="status"
+					id="load"></span></a>
+			</form>
+		</div>
+	</section>
+</body>
+</html>

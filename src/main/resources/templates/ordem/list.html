@@ -19,6 +19,7 @@
 						<th th:text="#{dataInicio}" >Data Inicio</th>
 						<th th:text="#{dataFim}" >Data Fim</th>
 						<th th:text="#{colaborador}">Usuario</th>
+						<th th:text="#{editar}">Editar</th>
 						
 					</tr>
 				</thead>
@@ -31,7 +32,9 @@
 						<th th:text="${#temporals.format(ord.ordem.dataInicio, 'dd/MM/yyyy-HH:mm')}">Data Inicio</th>
 						<th th:text="${#temporals.format(ord.ordem.dataFim, 'dd/MM/yyyy-HH:mm')}">Data Inicio</th>	
 						<th th:if="${ord.ordem.usuario}==null">Não registrado</th>	
-						<th th:unless="${ord.ordem.usuario}==null" th:text="${ord.ordem.usuario.nome}">Usuario</th>				
+						<th th:unless="${ord.ordem.usuario}==null" th:text="${ord.ordem.usuario.nome}">Usuario</th>		
+						<td><a th:onclick="|window.location.href='ordem/editar/${ord.ordem.codOp}'|"><i
+									style="color: #4E73DF; cursor: pointer" class="fas fa-edit"></i></a>		
 
 					</tr>
 				</tbody>

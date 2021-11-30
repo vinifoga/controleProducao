@@ -33,13 +33,13 @@
 						<label for="produto" th:text="#{produto}">Produto
 						</label>
 						<select class="form-control" id="produto" name="produto" required="required">
-							<option th:each="prod : ${produtos}" th:value="${prod.codProduto}" th:text="${prod.descProduto}"></option>
+							<option  th:each="prod : ${produtos}" th:value="${prod.codProduto}" th:text="${prod.descProduto}" th:selected="(${prod.descProduto} == *{produto.descProduto})"></option>
 						</select>
 					</div>
 					<div class="mb-3 col-md-2">
 						<label for="produtoOrdem.qtdProd" th:text="#{quantidade}">Quantidade
 						</label>
-						<input class="form-control" type="number" id="qtdProd" name="qtdProd" required />
+						<input class="form-control" type="number" id="qtdProd" name="qtdProd" th:value="*{qtdProd}?:''" required />
 						
 					</div>
 				</div>

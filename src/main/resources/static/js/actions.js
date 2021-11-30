@@ -81,3 +81,7 @@ function addEQ(codFaseProd){
 	window.location.href = `fases/addEQ/${codFaseProd}`;
 }
 
+function editarUsuario(id){
+	window.location.href = `edita-usuario/${id}`;
+}
+

@@ -12,19 +12,25 @@
 			<table class="table">
 				<thead>
 					<tr  class="table-primary">
+						<th th:text="#{codigo}">Código</th>
 						<th th:text="#{descricao}">Descrição</th>
 						<th th:text="#{corte}">Corte</th>
 						<th th:text="#{tempero}" >Tempero</th>
 						<th th:text="#{embalagem}" >Embalagem</th>
+						<th th:text="#{editar}" >Editar</th>
+						<th th:text="#{excluir}" >Excluir</th>
 						
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="prod : ${produtos}">
+						<th th:text="${prod.codProduto}">Descrição</th>
 						<th th:text="${prod.descProduto}">Descrição</th>
 						<td th:text="${prod.corte}">Corte</td>
 						<td th:text="${prod.tempero}">Tempero</td>
 						<td th:text="${prod.embalagem}">Embalagem</td>
+						<td><a href="#" th:onclick="|window.location.href='produto/editar/${prod.codProduto}'|"><i class="fas fa-edit"></i></a></td>
+						<td><a href="#" th:onclick="|window.location.href='produto/excluir/${prod.codProduto}'|"><i class="fas fa-trash"></i></a></td>
 
 					</tr>
 				</tbody>

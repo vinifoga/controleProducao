@@ -34,10 +34,19 @@ public class OrdemService {
 	private EquipamentoReqService equipamentoReqService;
 	
 	@Autowired
+	private ReqEquipamentoService reqEquipamentoService;
+	
+	@Autowired
 	private MaoObraReqService maoObraReqService;
 	
 	@Autowired
+	private ReqMOService reqMoService;
+	
+	@Autowired
 	private MatPrimaReqService matPrimaReqService;
+	
+	@Autowired
+	private ReqMatPrimaService reqMatPrimaService;
 	
 	@Transactional
 	public Ordem save(Ordem ordem) {
@@ -46,6 +55,10 @@ public class OrdemService {
 
 	public List<Ordem> list() {
 		return ordemRepository.findAll();
+	}
+	
+	public Ordem findById(Long id) {
+		return ordemRepository.findById(id).get();
 	}
 
 	public void gerarRequisicoes(ProdutoOrdem produtoOrdem) {
@@ -62,7 +75,9 @@ public class OrdemService {
 					equipamentoReq.setTempoUso(produtoFaseEquipamento.getEquipamento().getTempoUso());
 					equipamentoReq.setUnidadeMedida(produtoFaseEquipamento.getEquipamento().getUnidadeMedida());
 					equipamentoReq.setReqEquipamento(requisicaoEquipamento);
-					equipamentoReqService.save(equipamentoReq, requisicaoEquipamento);					
+//					reqEquipamentoService.save(requisicaoEquipamento);
+					equipamentoReqService.save(equipamentoReq, requisicaoEquipamento);	
+					
 				}
 				
 			}
@@ -77,6 +92,7 @@ public class OrdemService {
 					maoObraReq.setTempoTrabalhado(produtoFaseMaoObra.getMaoObra().getTempoTrabalho());
 					maoObraReq.setUnidadeMedida(produtoFaseMaoObra.getMaoObra().getUnidadeMedida());
 					maoObraReq.setReqMaoObra(requisicaoMO);
+//					reqMoService.save(requisicaoMO);
 					maoObraReqService.save(maoObraReq, requisicaoMO);					
 				}
 				
@@ -91,6 +107,7 @@ public class OrdemService {
 					matPrimaReq.setProdutoFaseMatPrima(produtoFasemat);
 					matPrimaReq.setUnidMedida(produtoFasemat.getMatPrima().getUnidadeMedida());
 					matPrimaReq.setReqMatPrima(requisicaoMP);
+//					reqMatPrimaService.save(requisicaoMP);
 					matPrimaReqService.save(matPrimaReq, requisicaoMP);
 				}
 				

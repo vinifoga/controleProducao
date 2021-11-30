@@ -11,9 +11,11 @@
 			<h4 class="mb-3" th:text="#{usuario}">Usuário</h4>
 			<form action="/usuario" th:action="@{/usuario}"
 				th:object="${usuario}" method="post">
+				<input type="hidden" id="id" name="id"th:value="*{id}">
 				<div class="row">
 					<div class="mb-3 col-md-2">
-						<label for="colaborador.matricula" th:text="#{matricula}">Matricula</label>
+						<input type="hidden" th:value="*{id}" id="id" name="id"> <label
+							for="colaborador.matricula" th:text="#{matricula}">Matricula</label>
 						<input type="number" class="form-control"
 							id="colaborador.matricula" name="colaborador.matricula"
 							th:value="*{colaborador.matricula}" readonly>
@@ -26,19 +28,34 @@
 					<div class="mb-3 col-md-2">
 						<label for="ativo" th:text="#{ativo}">Ativo</label> <input
 							type="checkbox" class="form-control" id="ativo" name="ativo"
-							>
+							th:checked="*{ativo}">
 					</div>
 				</div>
 				<div class="row">
 					<div class="mb-3 col-md-6">
-						<label for="email" th:text="#{email}">Email</label> <input type="text" class="form-control" id="email" name="email" th:value="*{email}">
+						<label for="email" th:text="#{email}">Email</label> <input
+							type="text" class="form-control" id="email" name="email"
+							th:value="*{email}">
 					</div>
-					<div class="mb-3 col-md-6">
-						<label for="senha" th:text="#{senha}">Senha</label> <input type="text" class="form-control" id="senha" name="senha" th:value="*{senha}">
+					<div class="mb-3 col-md-6" th:if="*{senha}==null">
+						<label for="senha" th:text="#{senha}">Senha</label> <input
+							type="text" class="form-control" id="senha" name="senha"
+							th:value="*{senha}">
 					</div>
+					<div>	
+					<br><br>
+					<table>				
+					<tr th:each="perfil : ${usuario.roles}" >
+									<td th:if="${perfil.nomeRole}=='ROLE_LIDER'"><i style="color: #f5d22e;" class="fas fa-crown"></i> Líder</td>
+									<td th:if="${perfil.nomeRole}=='ROLE_OPERADOR'"><i style="color: #4E73DF;" class="fas fa-hard-hat"></i> Operador</td>
+									<td th:if="${perfil.nomeRole}=='ROLE_ADMIN'"><i style="color: #25ba0e;" class="fas fa-tools"></i> Admin</td>				
+						
+					</table>
+					</div>
+														
 				</div>
-				
-				
+
+
 
 				<button id="salvar" class="btn btn-success btn-lg btn-block"
 					type="submit" th:value="${save}">

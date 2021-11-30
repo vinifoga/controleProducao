@@ -24,4 +24,9 @@ public class CargoService {
 	public List<Cargo> list(){
 		return cargoRepository.findAll();
 	}
+	
+	public Cargo findById(Long id) {
+		return cargoRepository.findById(id).get();
+		
+	}
 }

@@ -74,7 +74,7 @@
 						<tr th:each="faseProd : ${fasesProduto}">
 							<th th:text="${faseProd.codProdutoFase}">Código</th>
 							<td th:text="${faseProd.fase.descricao}">Descricao</td>
-							<td><a th:onclick="'addMP('+${faseProd.codProdutoFase}+')'"><i
+							<td><a th:onclick="|window.location.href='fase/addMP/${faseProd.codProdutoFase}'|"><i
 									style="color: #4E73DF; cursor: pointer" class="fas fa-cubes"></i></a>
 							</td>
 							<td><a th:onclick="'addMO('+${faseProd.codProdutoFase}+')'"><i
