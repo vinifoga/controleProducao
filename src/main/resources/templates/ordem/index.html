@@ -33,7 +33,8 @@
 						<label for="produto" th:text="#{produto}">Produto
 						</label>
 						<select class="form-control" id="produto" name="produto" required="required">
-							<option  th:each="prod : ${produtos}" th:value="${prod.codProduto}" th:text="${prod.descProduto}" th:selected="(${prod.descProduto} == *{produto.descProduto})"></option>
+							<option th:if="*{produto}" th:each="prod : ${produtos}" th:value="${prod.codProduto}" th:text="${prod.descProduto}" th:selected="(${prod.descProduto} == *{produto.descProduto})"></option>
+							<option th:unless="*{produto}" th:each="prod : ${produtos}" th:value="${prod.codProduto}" th:text="${prod.descProduto}" ></option>
 						</select>
 					</div>
 					<div class="mb-3 col-md-2">
